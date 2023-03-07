@@ -15,10 +15,30 @@
   ],
   "rootMainFiles": [],
   "pages": {
+    "/Dashboard/Charting": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Dashboard/Charting.js"
+    ],
     "/Dashboard/Gallery": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/Dashboard/Gallery.js"
+    ],
+    "/Dashboard/Notifications": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Dashboard/Notifications.js"
+    ],
+    "/Dashboard/Profits": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Dashboard/Profits.js"
+    ],
+    "/Dashboard/Wallet": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Dashboard/Wallet.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",

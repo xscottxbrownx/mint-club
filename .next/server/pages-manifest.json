@@ -2,6 +2,10 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/api/getTokensBalance": "pages/api/getTokensBalance.js",
+  "/Dashboard/Charting": "pages/Dashboard/Charting.js",
+  "/Dashboard/Notifications": "pages/Dashboard/Notifications.js",
   "/Dashboard/Gallery": "pages/Dashboard/Gallery.js",
-  "/api/getNftsForOwner": "pages/api/getNftsForOwner.js"
+  "/Dashboard/Profits": "pages/Dashboard/Profits.js",
+  "/Dashboard/Wallet": "pages/Dashboard/Wallet.js"
 }

@@ -87,7 +87,7 @@ const Sidebar = () => {
             <DashNavLink
               expandSidebar={expandSidebar}
               link="/Dashboard/Gallery"
-              text="Node"
+              text="Gallery"
               icon={faImage}
             />
           </li>
