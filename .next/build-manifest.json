@@ -15,11 +15,6 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/Dashboard/Charting": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Dashboard/Charting.js"
-    ],
     "/Dashboard/Gallery": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -29,11 +24,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/Dashboard/Marketplace.js"
-    ],
-    "/Dashboard/Notifications": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/Dashboard/Notifications.js"
     ],
     "/Dashboard/Wallet": [
       "static/chunks/webpack.js",

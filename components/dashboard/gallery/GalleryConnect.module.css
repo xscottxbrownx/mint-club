@@ -1,8 +1,10 @@
 .gallery_connect {
 	display: flex;
+	align-items: center;
 	justify-content: flex-end;
 	width: 100vw;
-	padding: 1rem 4rem 1rem 4rem;
+	height: 60px;
+	padding-right: 3rem;
 	background-color: #1e1f21;
 	color: white;
 }
