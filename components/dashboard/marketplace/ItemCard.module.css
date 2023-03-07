@@ -1,0 +1,50 @@
+.itemCardContainer {
+  border: 3px solid black;
+  margin: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 20px 10px 20px;
+  background-color: #44484d;
+}
+
+.aboveImageContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+.aboveImageContainer p {
+  color: #008fff;
+  font-size: 12px;
+}
+
+.itemCardContainer h3 {
+  color: #008fff;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.itemCardContainer h5 {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  color: black;
+  font-size: 14px;
+  max-width: 200px;
+}
+
+.itemCardContainer button {
+  background-color: #1e1f21;
+  color: #44484d;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.itemCardContainer button:hover {
+  color: #76fff8;
+}

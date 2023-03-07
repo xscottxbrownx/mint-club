@@ -1,0 +1,41 @@
+// Imported components
+import TeamMembers from "../../components/general/team/TeamMembers";
+import TeamCard from "../../components/general/team/TeamCard";
+import GeneralLayout from "../../components/general/GeneralLayout";
+// Imported stylesheet
+import classes from "../../styles/general/Team.module.css";
+
+const Team = () => {
+  return (
+    <>
+      <div className={classes.teamContainer}>
+        <div className={classes.teamContent}>
+          <h2>TEAM</h2>
+          <div className={classes.teamGridContainer}>
+            {TeamMembers.map((member, index) => (
+              <TeamCard
+                key={index}
+                title={member.title}
+                imageSrc={member.imageSrc}
+                imageAlt={member.imageAlt}
+                discordUsername={member.discordUsername}
+                twitterUsername={member.twitterUsername}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Team;
+
+
+Team.getLayout = function getLayout(page) {
+  return (
+    <GeneralLayout>
+      {page}
+    </GeneralLayout>
+  )
+}

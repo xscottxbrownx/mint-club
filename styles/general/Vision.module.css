@@ -1,0 +1,56 @@
+.visionContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.visionContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  border: solid #ffde59 2px;
+  border-radius: 10px;
+  padding: 25px 50px;
+  margin: 25px 0px;
+}
+
+.visionContent h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 800;
+  color: rgb(109, 204, 162, 1);
+}
+
+.visionContent h3 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.visionContent p {
+  text-align: center;
+  margin-bottom: 25px;
+  line-height: 1.5rem;
+}
+
+.visionContent button {
+  display: flex;
+  width: auto;
+  margin: auto;
+  border-radius: 10px;
+  font-size: 24px;
+  padding: 10px;
+  background-color: rgb(109, 204, 162, 1);
+}
+
+.visionBtn a {
+  color: white;
+  text-decoration: none;
+}
+
+.visionBtn:hover {
+  background-color: rgb(68, 201, 143);
+}
+
+.visionBtn:hover a {
+  color: #ffde59;
+}

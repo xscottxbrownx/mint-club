@@ -1,0 +1,12 @@
+.dashboardIntro {
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 60px);
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboardIntro h1 {
+  text-align: center;
+}

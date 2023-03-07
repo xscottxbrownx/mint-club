@@ -1,0 +1,14 @@
+.profitsContainer {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 5rem;
+  color: #1e1f21;
+}

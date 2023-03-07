@@ -1,0 +1,30 @@
+.chartingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.chartingImageContainer {
+}
+
+.chartingButtonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.chartingButtonContainer button {
+  padding: 8px;
+  margin: 25px;
+  background-color: #1e1f21;
+  color: #3e4145;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.chartingButtonContainer button:hover {
+  color: #76fff8;
+}

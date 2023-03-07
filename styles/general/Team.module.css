@@ -1,0 +1,32 @@
+.teamContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.teamContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  border: solid #ffde59 2px;
+  border-radius: 10px;
+  padding: 25px 50px;
+  margin: 25px 0px;
+}
+
+.teamContent h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 800;
+  color: rgb(109, 204, 162, 1);
+}
+
+.teamGridContainer {
+  --auto-grid-min-size: 16rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
+  grid-gap: 1rem;
+}

@@ -1,0 +1,44 @@
+.teamCardContainer {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 3px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 8px;
+}
+
+.titleContainer h3 {
+  color: #008fff;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.imageContainer{
+  position: relative;
+  height: 250px;
+  width: 250px;
+}
+
+.infoContainer h4 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: #008fff;
+}
+
+.infoContainer h4 span {
+  color: black;
+}

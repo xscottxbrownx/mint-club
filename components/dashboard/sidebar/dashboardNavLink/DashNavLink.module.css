@@ -1,0 +1,16 @@
+.sidebarLink {
+  display: flex;
+  text-decoration: none;
+  line-height: 1.5rem;
+  align-items: center;
+  color: #3e4145;
+}
+
+.sidebarLink:hover,
+.sidebarLinkActive {
+  color: #11df93;
+}
+
+.sidebarLink p {
+  margin-right: 6px;
+}

@@ -1,0 +1,96 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgb(109, 204, 162, 1);
+}
+
+.navlogo {
+  align-items: center;
+}
+
+.navlogo img {
+  height: 60px;
+  width: 60px;
+}
+
+.navlist ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.navlink {
+  font-size: 18px;
+  font-weight: 650;
+  color: black;
+  text-decoration: none;
+  padding-right: 15px;
+}
+
+.navlink:hover,
+.navlink:active {
+  color: #ffde59;
+  text-decoration: underline;
+}
+
+/* ----- START OF MOBILE HAMBURGER MENU (within navbar) ----- */
+/* --- styles hamburger menu (but not shown until -600px screen) --- */
+.hamburgerIcon,
+.closeIcon {
+  position: absolute;
+  top: 1rem;
+  right: 25px;
+  display: none;
+  color: black;
+}
+
+.hamburgerIcon:hover,
+.closeIcon:hover {
+  color: #ffde59;
+}
+
+/* --- shows hamburger and hide regular nav (-600px screen) --- */
+@media screen and (max-width: 600px) {
+  .hamburgerIcon,
+  .closeIcon {
+    display: flex;
+  }
+
+  .navlist {
+    display: none;
+    width: 100%;
+  }
+
+  /* --- makes nav links show as column when hamburger menu is activated --- */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navlist ul {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  .navlist li {
+    padding: 10px 0;
+    border-top: black solid 2px;
+  }
+
+  .navlist ul li:hover {
+    background-color: rgb(68, 201, 143);
+  }
+
+  .navlist.active {
+    display: flex;
+    background-color: rgb(147, 199, 176, 0.5);
+    border-bottom: black solid 2px;
+  }
+}
+/* --- END OF MOBILE HAMBURGER MENU (within navbar) --- */

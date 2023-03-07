@@ -1,0 +1,19 @@
+.nodeInfoContainer {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  width: 100vw - 60px;
+  height: 100vh;
+}
+
+.nodeInfoFurunodeImage {
+  background-image: url(https://cdn.discordapp.com/attachments/976239576714715206/978114433077366814/unknown.png);
+  background-size: cover;
+  width: 1000px;
+  height: 500px;
+}
+
+.nodeInfoDescriptionContainer {
+  margin: 0 20%;
+  text-align: center;
+}
