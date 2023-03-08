@@ -1,5 +1,5 @@
 // Imported components
-import TeamMembers from "../../components/general/team/TeamMembers";
+import TeamMembers from "../../data/TeamMembers.js";
 import TeamCard from "../../components/general/team/TeamCard";
 import GeneralLayout from "../../components/general/GeneralLayout";
 // Imported stylesheet

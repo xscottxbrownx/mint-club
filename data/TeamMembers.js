@@ -1,9 +1,9 @@
-import furu from "../../../public/staff_logos/furu.png";
-import vegan from "../../../public/staff_logos/vegan.png";
-import duststorm from "../../../public/staff_logos/duststorm.png";
-import ollie from "../../../public/staff_logos/ollie.png";
-import lowrider from "../../../public/staff_logos/lowrider.png";
-import tj from "../../../public/staff_logos/tj.png";
+import furu from "../public/staff_logos/furu.png";
+import vegan from "../public/staff_logos/vegan.png";
+import duststorm from "../public/staff_logos/duststorm.png";
+import ollie from "../public/staff_logos/ollie.png";
+import lowrider from "../public/staff_logos/lowrider.png";
+import tj from "../public/staff_logos/tj.png";
 
 
 const members = [
