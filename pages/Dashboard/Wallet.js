@@ -1,5 +1,5 @@
 // Imported Components
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
+// import DashboardLayout from "../../components/dashboard/DashboardLayout";
 // // Imported stylesheet
 // import classes from "../../styles/dashboard/Wallet.module.css";
 
@@ -18,6 +18,7 @@ import DashboardLayout from "../../components/dashboard/DashboardLayout";
 //   return <DashboardLayout>{page}</DashboardLayout>;
 // };
 
+// PLACEHOLDER CONTENT⬆️
 
 
 //========================================================
@@ -25,15 +26,22 @@ import DashboardLayout from "../../components/dashboard/DashboardLayout";
 
 
 
+// Imported Components
+import DashboardLayout from "../../components/dashboard/DashboardLayout";
+// Imports from React
 import { useState, useEffect } from "react";
+// Imports from Wagmi
 import { useAccount } from "wagmi";
+// Imported stylesheet
 import styles from "../../styles/dashboard/Wallet.module.css";
+
 
 export default function Wallet({ walletAddress, chain }) {
   const [tokensBalance, setTokensBalance] = useState();
   const [isLoading, setIsloading] = useState(false);
   const { address, isConnected, isDisconnected } = useAccount();
   const [propAddress, setPropAddress] = useState();
+
   useEffect(() => {
     const getNFTs = async () => {
       setIsloading(true);
@@ -66,11 +74,14 @@ export default function Wallet({ walletAddress, chain }) {
     <div className={styles.token_panel_container}>
       <div className={styles.token_box}>
         <h2>
+        {/* UNDEFINED ISSUE HERE */}
+        {console.log(walletAddress, "walletAddress")}
+        {console.log(propAddress, "propAddress")}
           {isDisconnected && walletAddress?.length
-            ? `${walletAddress.slice(0, 6)}...${walletAddress.contract.slice(
+            ? `${walletAddress.slice(0, 10)}...${walletAddress.contract.slice(
                 38
               )} `
-            : `${propAddress?.slice(0, 6)}...${propAddress?.slice(38)}`}
+            : `${propAddress?.slice(0, 10)}...${propAddress?.slice(38)}`}
         </h2>
         <div className={styles.tokens_container}>
           {tokensBalance?.length &&
@@ -85,7 +96,8 @@ export default function Wallet({ walletAddress, chain }) {
                             ? token.logo
                             : "http://via.placeholder.com/50"
                         }
-                      ></img>
+                        
+                      />
                     </div>
                     <p className={styles.token_name}>{token.name}</p>
                   </div>
