@@ -10,7 +10,7 @@ export default function NftCard({ nft }) {
             Your browser does not support the video tag.
           </video>
         ) : (
-          <img src={nft.media}></img>
+          <img src={nft.media} />
         )}
       </div>
       <div className={styles.info_container}>
