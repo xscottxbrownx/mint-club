@@ -1,9 +1,0 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/api/getNftsForOwner": "pages/api/getNftsForOwner.js",
-  "/Dashboard/Marketplace": "pages/Dashboard/Marketplace.js",
-  "/Dashboard/Gallery": "pages/Dashboard/Gallery.js",
-  "/Dashboard/Wallet": "pages/Dashboard/Wallet.js"
-}
