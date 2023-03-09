@@ -9,13 +9,15 @@ export default function NFTGallery({}) {
   const [walletOrCollectionAddress, setWalletOrCollectionAddress] =
     useState("vitalik.eth");
   const [fetchMethod, setFetchMethod] = useState("wallet");
-  const [pageKey, setPageKey] = useState(false);
+  const [pageKey, setPageKey] = useState();
   const [spamFilter, setSpamFilter] = useState(true);
   const [isLoading, setIsloading] = useState(false);
   const { address, isConnected } = useAccount();
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
 
   const changeFetchMethod = (e) => {
+    setNfts();
+    setPageKey();
     switch (e.target.value) {
       case "wallet":
         setWalletOrCollectionAddress("vitalik.eth");
@@ -34,8 +36,9 @@ export default function NFTGallery({}) {
   };
 
   const fetchNFTs = async (pagekey) => {
-    setIsloading(true);
-    setNfts();
+    // setIsloading(true);
+    // setNfts();
+    if (!pageKey) setIsloading(true);
     const endpoint =
       fetchMethod == "wallet" || fetchMethod == "connectedWallet"
         ? "/api/getNftsForOwner"
@@ -54,13 +57,23 @@ export default function NFTGallery({}) {
         }),
       }).then((res) => res.json());
       setNfts(res.nfts);
+      // if (res.pageKey) {
+      //   setPageKey(res.pageKey);
+      if (nfts?.length && pageKey) {  //broke the load more button
+        setNfts((prevState) => [...prevState, ...res.nfts]);
+      } else {
+        // setPageKey();
+        setNfts();
+        setNfts(res.nfts);
+      }
       if (res.pageKey) {
         setPageKey(res.pageKey);
       } else {
         setPageKey();
       }
-    } catch (e) {}
-
+    } catch (e) {
+      console.log(e);
+    }
     setIsloading(false);
   };
 
@@ -83,7 +96,7 @@ export default function NFTGallery({}) {
                 changeFetchMethod(e);
               }}
             >
-              <option value={"wallet"}>wallet</option>
+              <option value={"wallet"}>address</option>
               <option value={"collection"}>collection</option>
               <option value={"connectedWallet"}>connected wallet</option>
             </select>
@@ -96,8 +109,8 @@ export default function NFTGallery({}) {
               onChange={(e) => {
                 setWalletOrCollectionAddress(e.target.value);
               }}
-              placeholder="Insert NFTs contract or wallet address"
-            ></input>
+              placeholder="Insert NFT contract or wallet address"
+            />
             <div className={styles.buttons_under_input}>
               <div className={styles.select_container_alt}>
                 <select
@@ -127,7 +140,6 @@ export default function NFTGallery({}) {
       ) : (
         <div className={styles.nft_gallery}>
           {nfts?.length && fetchMethod != "collection" && (
-            // need to make mobile responsive
             <div
               style={{
                 display: "flex",
