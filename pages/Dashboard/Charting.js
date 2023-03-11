@@ -9,7 +9,7 @@ const Charting = () => {
     <div className={classes.chartingContainer}>
       <div className={classes.chartingImageContainer}>
         <img
-          src="https://via.placeholder.com/1200x600/1e1f21/44484d?text=CHART"
+          src="https://via.placeholder.com/1200x600/1e1f21/44484d?text=CHART+COMPONENT"
           alt="placeholder of chart"
         />
       </div>
