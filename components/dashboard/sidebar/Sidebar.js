@@ -13,12 +13,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,
   faImage,
-  faWallet,
+  faCoins,
   faChartLine,
   faChevronLeft,
   faChevronRight,
   faDollarSign,
-  faPoll,
+  faLandmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
@@ -72,20 +72,6 @@ const Sidebar = () => {
           >
             <DashNavLink
               expandSidebar={expandSidebar}
-              link="/Dashboard/Marketplace"
-              text="Shop"
-              icon={faDollarSign}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
               link="/Dashboard/Gallery"
               text="Gallery"
               icon={faImage}
@@ -102,7 +88,35 @@ const Sidebar = () => {
               expandSidebar={expandSidebar}
               link="/Dashboard/Wallet"
               text="Wallet"
-              icon={faWallet}
+              icon={faCoins}
+            />
+          </li>
+          <li
+            onClick={() => {
+              if (expandSidebar) {
+                handleClick();
+              }
+            }}
+          >
+            <DashNavLink
+              expandSidebar={expandSidebar}
+              link="/Dashboard/History"
+              text="History"
+              icon={faLandmark}
+            />
+          </li>
+          <li
+            onClick={() => {
+              if (expandSidebar) {
+                handleClick();
+              }
+            }}
+          >
+            <DashNavLink
+              expandSidebar={expandSidebar}
+              link="/Dashboard/Marketplace"
+              text="Shop"
+              icon={faDollarSign}
             />
           </li>
           <li
@@ -117,20 +131,6 @@ const Sidebar = () => {
               link="/Dashboard/Charting"
               text="Chart"
               icon={faChartLine}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/Profits"
-              text="Profits"
-              icon={faPoll}
             />
           </li>
           <li
