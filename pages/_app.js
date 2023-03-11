@@ -1,7 +1,7 @@
-// import "../styles/globals.css";
+// Imported from RainbowKit
 import "@rainbow-me/rainbowkit/styles.css";
-
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+// Imported from Wagmi
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import {
 	mainnet,
@@ -15,7 +15,13 @@ import {
 } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-// import GalleryLayout from "../layout/galleryLayout";
+// Necessary imports from fontawesome icons with NextJS
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+// Imported stylesheets
+import "../styles/globals.css";
+
 
 const { chains, provider } = configureChains(
 	[
@@ -43,36 +49,9 @@ const wagmiClient = createClient({
 });
 
 
-// export { WagmiConfig, RainbowKitProvider };
-// function MyApp({ Component, pageProps }) {
-// 	return (
-// 		<WagmiConfig client={wagmiClient}>
-// 			<RainbowKitProvider
-// 				modalSize="compact"
-// 				initialChain={process.env.NEXT_PUBLIC_DEFAULT_CHAIN}
-// 				chains={chains}
-// 			>
-// 				<GalleryLayout>
-// 					<Component {...pageProps} />
-// 				</GalleryLayout>
-// 			</RainbowKitProvider>
-// 		</WagmiConfig>
-// 	);
-// }
-
-// export default MyApp;
-
-
-// ========================
-
-// Necessary imports from fontawesome icons with NextJS
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-config.autoAddCss = false
-// Imported stylesheets
-import "../styles/globals.css";
-
 export { WagmiConfig, RainbowKitProvider };
+
+
 export default function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page) => page);
