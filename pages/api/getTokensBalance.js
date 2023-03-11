@@ -1,8 +1,8 @@
+// Imported from Alchemy
 import { Network, Alchemy } from "alchemy-sdk";
 
-export default async function handler(
-  req, res
-) {
+
+export default async function handler(req, res) {
   const { address, chain } = JSON.parse(req.body);
   if (req.method !== "POST") {
     res.status(405).send({ message: "Only POST requests allowed" });
@@ -12,13 +12,16 @@ export default async function handler(
     apiKey: process.env.ALCHEMY_API_KEY,
     network: Network[chain],
   };
-
   const alchemy = new Alchemy(settings);
+
   try {
+    // get erc-20 token balances
     const fetchedTokens = await alchemy.core.getTokenBalances(address);
+    // get main ETH crypto balance
     const ethBalance = await alchemy.core.getBalance(address);
     const parsedEthBalance = parseInt(ethBalance.toString()) / Math.pow(10, 18);
-    console.log(parsedEthBalance);
+    console.log("parsedEthBalance:", parsedEthBalance);
+
     const ethBalanceObject = {
       name: "Ethereum",
       symbol: "ETH",
@@ -27,6 +30,7 @@ export default async function handler(
       balance: parsedEthBalance.toPrecision(2),
       address: "0x",
     };
+
     const fetchedTokenBalances = fetchedTokens.tokenBalances.map(
       (token) => token.tokenBalance
     );
@@ -42,13 +46,13 @@ export default async function handler(
       })
     );
     
-    const unifiedBalancedAndMetadata = [ethBalanceObject];
+    const unifiedBalanceAndMetadata = [ethBalanceObject];
 
-    for (let x = 0; x < fetchedTokenMetadata.length - 1; x++) {
-      const tokenMetadata = fetchedTokenMetadata[x];
+    for (let i = 0; i < fetchedTokenMetadata.length - 1; i++) {
+      const tokenMetadata = fetchedTokenMetadata[i];
       const { name, symbol, logo, decimals } = tokenMetadata;
-      const hexBalance = fetchedTokenBalances[x];
-      const address = fetchedTokenAddresses[x];
+      const hexBalance = fetchedTokenBalances[i];
+      const address = fetchedTokenAddresses[i];
       let convertedBalance;
 
       if (hexBalance && tokenMetadata.decimals) {
@@ -62,12 +66,13 @@ export default async function handler(
             balance: convertedBalance.toPrecision(2),
             address,
           };
-          unifiedBalancedAndMetadata.push(tokenBalanceAndMetadata);
+          unifiedBalanceAndMetadata.push(tokenBalanceAndMetadata);
         }
       }
     }
+    console.log("unifiedBalanceAndMetadata:",unifiedBalanceAndMetadata);
 
-    res.status(400).json(unifiedBalancedAndMetadata);
+    res.status(400).json(unifiedBalanceAndMetadata);
   } catch (e) {
     console.warn(e);
     res.status(500).send({
