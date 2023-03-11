@@ -81,6 +81,7 @@
 .select_container_alt {
   text-align: center;
   padding: 0.6rem 1rem;
+  margin-right: 1rem;
   display: flex;
   border-radius: 3px;
   background-color: black;

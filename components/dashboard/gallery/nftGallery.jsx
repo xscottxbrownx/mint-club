@@ -9,7 +9,7 @@ export default function NFTGallery({}) {
   const [walletOrCollectionAddress, setWalletOrCollectionAddress] =
     useState("vitalik.eth");
   const [fetchMethod, setFetchMethod] = useState("wallet");
-  const [pageKey, setPageKey] = useState();
+  const [pageKey, setPageKey] = useState(false);
   const [spamFilter, setSpamFilter] = useState(true);
   const [isLoading, setIsloading] = useState(false);
   const { address, isConnected } = useAccount();
@@ -36,8 +36,8 @@ export default function NFTGallery({}) {
   };
 
   const fetchNFTs = async (pagekey) => {
-    // setIsloading(true);
-    // setNfts();
+    setIsloading(true);
+    setNfts();
     if (!pageKey) setIsloading(true);
     const endpoint =
       fetchMethod == "wallet" || fetchMethod == "connectedWallet"
@@ -55,22 +55,25 @@ export default function NFTGallery({}) {
           chain: chain,
           excludeFilter: spamFilter,
         }),
+
+        // [ENHANCEMENT] - Make load more button render 100 MORE nft's to the gallery display
+        // currently it replaces the 100 displayed with the next 100
       }).then((res) => res.json());
       setNfts(res.nfts);
-      // if (res.pageKey) {
-      //   setPageKey(res.pageKey);
-      if (nfts?.length && pageKey) {  //broke the load more button
-        setNfts((prevState) => [...prevState, ...res.nfts]);
-      } else {
-        // setPageKey();
-        setNfts();
-        setNfts(res.nfts);
-      }
       if (res.pageKey) {
         setPageKey(res.pageKey);
+      // if (nfts?.length && pageKey) {
+      //   setNfts((prevState) => [...prevState, ...res.nfts]);
       } else {
         setPageKey();
+        // setNfts();
+        // setNfts(res.nfts);
       }
+      // if (res.pageKey) {
+      //   setPageKey(res.pageKey);
+      // } else {
+      //   setPageKey();
+      // }
     } catch (e) {
       console.log(e);
     }
