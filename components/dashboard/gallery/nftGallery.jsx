@@ -6,8 +6,7 @@ import NftCard from "./NftCard";
 
 export default function NFTGallery({}) {
   const [nfts, setNfts] = useState();
-  const [walletOrCollectionAddress, setWalletOrCollectionAddress] =
-    useState("vitalik.eth");
+  const [walletOrCollectionAddress, setWalletOrCollectionAddress] = useState("vitalik.eth");
   const [fetchMethod, setFetchMethod] = useState("wallet");
   const [pageKey, setPageKey] = useState(false);
   const [spamFilter, setSpamFilter] = useState(true);
@@ -15,13 +14,13 @@ export default function NFTGallery({}) {
   const { address, isConnected } = useAccount();
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
 
+  // set fetchMethod based on selection (wallet address, collection, or connected wallet)
   const changeFetchMethod = (e) => {
     setNfts();
     setPageKey();
     switch (e.target.value) {
       case "wallet":
         setWalletOrCollectionAddress("vitalik.eth");
-
         break;
       case "collection":
         setWalletOrCollectionAddress(
@@ -35,6 +34,7 @@ export default function NFTGallery({}) {
     setFetchMethod(e.target.value);
   };
 
+  // fetch NFTs with proper API call based on fetchMethod
   const fetchNFTs = async (pagekey) => {
     setIsloading(true);
     setNfts();
@@ -55,7 +55,6 @@ export default function NFTGallery({}) {
           chain: chain,
           excludeFilter: spamFilter,
         }),
-
         // [ENHANCEMENT] - Make load more button render 100 MORE nft's to the gallery display
         // currently it replaces the 100 displayed with the next 100
       }).then((res) => res.json());
@@ -80,6 +79,7 @@ export default function NFTGallery({}) {
     setIsloading(false);
   };
 
+  // fetch NFTs if fetchMethod or spamFilter change
   useEffect(() => {
     fetchNFTs();
   }, [fetchMethod]);
@@ -87,11 +87,15 @@ export default function NFTGallery({}) {
     fetchNFTs();
   }, [spamFilter]);
 
+
+  // render NFTs from address as a Gallery/grid
   return (
     <div className={styles.nft_gallery_page}>
       <div>
+        {/* RENDER TOP INPUTS */}
         <div className={styles.fetch_selector_container}>
           <h2 style={{ fontSize: "20px" }}>Explore NFTs by</h2>
+          {/* select the fetchMethod */}
           <div className={styles.select_container}>
             <select
               defaultValue={"wallet"}
@@ -107,6 +111,7 @@ export default function NFTGallery({}) {
         </div>
         <div className={styles.inputs_container}>
           <div className={styles.input_button_container}>
+            {/* wallet/collection address input */}
             <input
               value={walletOrCollectionAddress}
               onChange={(e) => {
@@ -115,6 +120,7 @@ export default function NFTGallery({}) {
               placeholder="Insert NFT contract or wallet address"
             />
             <div className={styles.buttons_under_input}>
+              {/* select the blockchain */}
               <div className={styles.select_container_alt}>
                 <select
                   onChange={(e) => {
@@ -128,6 +134,7 @@ export default function NFTGallery({}) {
                   <option value={"MATIC_MUMBAI"}>Mumbai</option>
                 </select>
               </div>
+              {/* search button */}
               <div onClick={() => fetchNFTs()} className={styles.button_blue}>
                 <a>Search</a>
               </div>
@@ -135,13 +142,16 @@ export default function NFTGallery({}) {
           </div>
         </div>
       </div>
-
+      
+      {/* if loading RENDER LOADING popup */}
       {isLoading ? (
         <div className={styles.loading_box}>
           <p>Loading...</p>
         </div>
+      // if done loading, show a spam toggle and diaply nfts as a grid gallery  
       ) : (
         <div className={styles.nft_gallery}>
+          {/* RENDER a "HIDE SPAM" TOGGLE if not an nft collection address */}
           {nfts?.length && fetchMethod != "collection" && (
             <div
               style={{
@@ -163,6 +173,7 @@ export default function NFTGallery({}) {
             </div>
           )}
 
+          {/* RENDER NFTS as a grid GALLERY of cards */}
           <div className={styles.nfts_display}>
             {nfts?.length ? (
               nfts.map((nft) => {
@@ -177,6 +188,7 @@ export default function NFTGallery({}) {
         </div>
       )}
 
+      {/* if more than 100 nfts, RENDER a "LOAD MORE" button */}
       {pageKey && nfts?.length && (
         <div>
           <a
