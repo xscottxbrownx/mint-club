@@ -39,6 +39,7 @@ const Sidebar = () => {
               src={FMC_logo}
               alt="FMC logo"
               className={classes.sidebarNavlogo}
+              priority
             />
           </Link>
           <span></span>
