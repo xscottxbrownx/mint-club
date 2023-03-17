@@ -4,6 +4,7 @@ export default async function handler(req, res) {
 	const { address, pageSize, chain, excludeFilter, pageKey } = JSON.parse(
 		req.body
 	);
+
 	if (req.method !== "POST") {
 		res.status(405).send({ message: "Only POST requests allowed" });
 		return;
@@ -27,6 +28,7 @@ export default async function handler(req, res) {
 			const { contract, title, tokenType, tokenId, description, media } =
 				nft;
 			console.log(nft.media);
+			
 			return {
 				contract: contract.address,
 				symbol: contract.symbol,
@@ -42,6 +44,7 @@ export default async function handler(req, res) {
 				format: media[0]?.format ? media[0]?.format : "png",
 			};
 		});
+
 		if (excludeFilter) {
 			const filteredNfts = formattedNfts.filter(
 				(nft) => nft.title.length && nft.description.length && nft.media
@@ -58,6 +61,7 @@ export default async function handler(req, res) {
 				pageKey: nfts.pageKey,
 			});
 		}
+		
 	} catch (e) {
 		console.warn(e);
 		res.status(500).send({
