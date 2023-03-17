@@ -92,7 +92,7 @@ export default function NFTGallery({}) {
   return (
     <div className={styles.nft_gallery_page}>
       <div>
-        {/* RENDER TOP INPUTS */}
+        {/* ===== START OF RENDER TOP INPUTS ===== */}
         <div className={styles.fetch_selector_container}>
           <h2 style={{ fontSize: "20px" }}>Explore NFTs by</h2>
           {/* select the fetchMethod */}
@@ -142,7 +142,10 @@ export default function NFTGallery({}) {
           </div>
         </div>
       </div>
+      {/* ===== END OF RENDER TOP INPUTS ===== */}
+
       
+      {/* ===== START OF RENDER NFTs AS A GALLERY ===== */}
       {/* if loading RENDER LOADING popup */}
       {isLoading ? (
         <div className={styles.loading_box}>
@@ -177,7 +180,7 @@ export default function NFTGallery({}) {
           <div className={styles.nfts_display}>
             {nfts?.length ? (
               nfts.map((nft) => {
-                return <NftCard key={nft.tokenId} nft={nft} />;
+                return <NftCard key={`${nft.title}+${nft.tokenId}`} nft={nft} />;
               })
             ) : (
               <div className={styles.loading_box}>
@@ -201,6 +204,7 @@ export default function NFTGallery({}) {
           </a>
         </div>
       )}
+      {/* ===== END OF RENDER NFTs AS A GALLERY ===== */}
     </div>
   );
 }
