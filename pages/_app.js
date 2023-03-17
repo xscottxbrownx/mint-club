@@ -13,7 +13,7 @@ import {
 	optimismGoerli,
 	arbitrumGoerli,
 } from "wagmi/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
+// import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 // Necessary imports from fontawesome icons with NextJS
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -34,7 +34,8 @@ const { chains, provider } = configureChains(
 		arbitrum,
 		arbitrumGoerli,
 	],
-	[alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
+	// [alchemyProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
+	[publicProvider({ apiKey: process.env.ALCHEMY_API_KEY }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
