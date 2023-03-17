@@ -7,74 +7,96 @@ import styles from "../../../styles/dashboard/TokenBalancesDisplay.module.css";
 
 
 export default function TokenBalancesDisplay() {
+  // avavilable from connected wallet
+  const { address, isConnected, isConnecting, isDisconnected } = useAccount();
+  
   const [tokensBalance, setTokensBalance] = useState();
-  const [walletOrAddress, setWalletOrAddress] = useState("vitalik.eth");
+  const [addressInput, setAddressInput] = useState(address ? address : null);
   const [isLoading, setIsloading] = useState(false);
-  const [fetchMethod, setFetchMethod] = useState("wallet");
+  const [fetchMethod, setFetchMethod] = useState(address ? "connectedWallet" : "wallet");
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
-  const { address, isConnected } = useAccount();
-
-
-// set fetchMethod based on selection (wallet address, collection, or connected wallet)
-const changeFetchMethods = (e) => {
-  // setNfts();
-  // setPageKey();
-  switch (e.target.value) {
-    case "wallet":
-      setWalletOrAddress("vitalik.eth");
-      break;
-    case "connectedWallet":
-      setWalletOrAddress(address);
-      break;
-  }
-  setFetchMethod(e.target.value);
-};
-
-  
-
-  
   
 
 
+  // set fetchMethod based on selection (wallet address or connected wallet)
+  const changeFetchMethods = (e) => {
+    switch (e.target.value) {
+      case "wallet":
+        setAddressInput("");
+        break;
+      case "connectedWallet":
+        setAddressInput(address);
+        break;
+    }
+    setFetchMethod(e.target.value);
+  };
 
 
+  // fetch tokens balance of wallet
+  const getWalletBalance = async () => {
+    // RENDER Loading...
+    setIsloading(true);
+    // try api call with connected wallet address
+    if (fetchMethod == "connectedWallet") {
+      try {
+        const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
+          method: "POST",
+          body: JSON.stringify({
+            address: address,
+            chain: chain,
+          }),
+        }).then((res) => res.json());
+        setTokensBalance(fetchedTokensBalance);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    // try api call with input address
+    else if (fetchMethod == "wallet") {
+      try {
+        const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
+          method: "POST",
+          body: JSON.stringify({
+            address: addressInput,
+            chain: chain,
+          }),
+        }).then((res) => res.json());
+        setTokensBalance(fetchedTokensBalance);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    // HIDE Loading...
+    setIsloading(false);
+  };
+  
 
-// =====================================================
-
-  // ON COMPONENT MOUNT + isConnected STATE CHANGE:
+  // ON COMPONENT MOUNT :
   // if a wallet is connected to the site
   // try to fetch the token balances in wallet
   useEffect(() => {
-    const getWalletBalance = async () => {
-      setIsloading(true);
-      if (address) {
-        try {
-          const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
-            method: "POST",
-            body: JSON.stringify({
-              address: address,
-              chain: process.env.NEXT_PUBLIC_ALCHEMY_NETWORK,
-            }),
-          }).then((res) => res.json());
-          setTokensBalance(fetchedTokensBalance);
-        } catch (e) {
-          console.log(e);
-        }
-      }
-      setIsloading(false);
-    };
-    getWalletBalance();
-  }, [isConnected]);
+    if (isConnected) {
+      getWalletBalance();
+    }
+  },[]);
 
-  // get wallet balance if fetchMethod changes
-  // useEffect(() => {
-  //   getWalletBalance();
-  // }, [fetchMethod]);
-  
+
+  // ======= DOESN'T WORK (DOWN) ========
+  // WHEN CONNECTING WALLET:
+  // if the text input is blank
+  // display the connected wallet address
+  if (isConnecting && fetchMethod === "wallet" && addressInput === null) {
+    setFetchMethod("connectedWallet");
+    setAddressInput(address);
+  }
+  if(isConnecting && addressInput === null) {
+    setAddressInput(address);
+  }
+  // ======= DOESN'T WORK (UP) ========
 
 
   return (
-    <div className={styles.wallet_page}>
+    <div className={styles.tokenBalances_page}>
       <div>
 
         {/* ===== START OF RENDER TOP INPUTS ===== */}
@@ -84,7 +106,8 @@ const changeFetchMethods = (e) => {
           {/* select the fetchMethod */}
           <div className={styles.select_container}>
             <select
-              defaultValue={"wallet"}
+              defaultValue={fetchMethod}
+              value={fetchMethod}
               onChange={(e) => {changeFetchMethods(e)}}
             >
               <option value={"wallet"}>address</option>
@@ -97,8 +120,9 @@ const changeFetchMethods = (e) => {
           <div className={styles.input_button_container}>
             {/* wallet address input */}
             <input
-              value={walletOrAddress}
-              onChange={(e) => {setWalletOrAddress(e.target.value)}}
+              defaultValue={addressInput}
+              value={addressInput}
+              onChange={(e) => {setAddressInput(e.target.value)}}
               placeholder="Insert wallet address"
             />
             <div className={styles.buttons_under_input}>
@@ -115,7 +139,7 @@ const changeFetchMethods = (e) => {
                 </select>
               </div>
               {/* search button */}
-              <div onClick={() => fetchNFTs()} className={styles.button_blue}>
+              <div onClick={() => getWalletBalance()} className={styles.button_blue}>
                 <a>Search</a>
               </div>
             </div>
@@ -124,17 +148,25 @@ const changeFetchMethods = (e) => {
       </div>
       {/* ===== END OF RENDER TOP INPUTS ===== */}
 
+
+      {/* ===== START OF RENDER DATA ===== */}
       {/* if loading data, RENDER Loading... */}
       {isLoading ? (
         <div className={styles.loading_box}>
           <p>Loading...</p>
         </div>
       ) : (
-        address ? (
-        // if wallet is connected RENDER TOKEN BALANCE DIV
+        // if not loading, RENDER...
         <div className={styles.token_panel_container}>
           <div className={styles.token_box}>
-            <h2>{`${address.slice(0, 6)}...${address.slice(38)}`}</h2>
+            {/* instructions to connect or enter wallet address */}
+            {isDisconnected && fetchMethod == "wallet"
+            ? <h2><span>CONNECT WALLET</span> OR <span>ENTER WALLET ADDRESS & CLICK SEARCH</span> TO SEE TOKEN BALANCES</h2>
+            : fetchMethod == "wallet" && addressInput
+              // wallet address (connected or input)
+              ? <h2>{`${addressInput.slice(0, 6)}...${addressInput.slice(38)}`}</h2>
+              : <h2>{`${address.slice(0, 6)}...${address.slice(38)}`}</h2>
+            }
             {/* display each token and it's balance from the wallet address */}
             <div className={styles.tokens_container}>
               {tokensBalance?.length && tokensBalance.map((token) => {
@@ -164,15 +196,9 @@ const changeFetchMethods = (e) => {
             </div>
           </div>
         </div>
-        ) : (
-          // if no wallet is NOT connected, RENDER INSTRUCTIONS to connect wallet
-          <div className={styles.token_panel_container}>
-            <div className={styles.token_box}>
-              <h2>CONNECT WALLET OR ENTER WALLET ADDRESS TO SEE TOKEN BALANCES</h2>
-            </div>
-          </div>
-          )
       )}
+      {/* ===== END OF RENDER DATA ===== */}
+
     </div>
   );
 }

@@ -1,12 +1,7 @@
-.wallet_page {
+.tokenBalances_page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
-  padding: 3.5rem 0;
-  width: 100%;
-  color: white;
-  background-color: #333639;
 }
 
 /* ===== START EXPLORE TOKENS BY: WALLET / CONNECTED WALLET SELECTOR ===== */
@@ -148,6 +143,10 @@
   font-weight: 700;
   margin-bottom: 1.8rem;
   text-align: center;
+}
+
+.token_box span{
+  color:  #008fff;
 }
 
 /* Below the h2, displays the .map of all tokens */
