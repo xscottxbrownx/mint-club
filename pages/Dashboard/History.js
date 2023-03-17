@@ -1,17 +1,16 @@
 // Imported Components
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
+import TransactionHistoryDisplay from "../../components/dashboard/history/TransactionHistoryDisplay";
 // Imported stylesheet
-import classes from "../../styles/dashboard/History.module.css";
+import styles from "../../styles/dashboard/History.module.css";
 
-const History = () => {
+export default function History() {
   return (
-    <div className={classes.historyContainer}>
-      <div className={classes.placeholder}>HISTORY COMPONENT</div>
+    <div className={styles.main}>
+      <TransactionHistoryDisplay />
     </div>
   );
 };
-
-export default History;
 
 
 History.getLayout = function getLayout(page) {
