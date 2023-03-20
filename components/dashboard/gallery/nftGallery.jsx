@@ -5,13 +5,13 @@ import NftCard from "./NftCard";
 
 
 export default function NFTGallery({}) {
+  const { address, isConnected } = useAccount();
   const [nfts, setNfts] = useState();
-  const [walletOrCollectionAddress, setWalletOrCollectionAddress] = useState("vitalik.eth");
-  const [fetchMethod, setFetchMethod] = useState("wallet");
+  const [walletOrCollectionAddress, setWalletOrCollectionAddress] = useState(isConnected ? address : "vitalik.eth");
+  const [fetchMethod, setFetchMethod] = useState(isConnected ? "connectedWallet" : "wallet");
   const [pageKey, setPageKey] = useState(false);
   const [spamFilter, setSpamFilter] = useState(true);
   const [isLoading, setIsloading] = useState(false);
-  const { address, isConnected } = useAccount();
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
 
   // set fetchMethod based on selection (wallet address, collection, or connected wallet)
@@ -98,7 +98,7 @@ export default function NFTGallery({}) {
           {/* select the fetchMethod */}
           <div className={styles.select_container}>
             <select
-              defaultValue={"wallet"}
+              defaultValue={isConnected ? "connectedWallet" : "wallet"}
               onChange={(e) => {
                 changeFetchMethod(e);
               }}
@@ -179,8 +179,8 @@ export default function NFTGallery({}) {
           {/* RENDER NFTS as a grid GALLERY of cards */}
           <div className={styles.nfts_display}>
             {nfts?.length ? (
-              nfts.map((nft) => {
-                return <NftCard key={`${nft.title}+${nft.tokenId}`} nft={nft} />;
+              nfts.map((nft, index) => {
+                return <NftCard key={index} nft={nft} />;
               })
             ) : (
               <div className={styles.loading_box}>
