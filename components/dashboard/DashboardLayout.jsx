@@ -5,10 +5,7 @@ import GalleryConnect from "./gallery/galleryConnect";
 import classes from "./DashboardLayout.module.css";
 
 
-import { useAccount } from "wagmi";
-
 export default function DashboardLayout({ children }) {
-  const { address, isConnected } = useAccount();
   
   return (
     <div className={classes.dashboard}>

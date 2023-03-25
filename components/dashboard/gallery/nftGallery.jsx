@@ -1,6 +1,10 @@
+// Imports from React
 import { useEffect, useState } from "react";
+// Imported Stylesheet
 import styles from "./NftGallery.module.css";
+// Imports from Wagmi
 import { useAccount } from "wagmi";
+// Imported Components
 import NftCard from "./NftCard";
 
 
@@ -117,7 +121,7 @@ export default function NFTGallery({}) {
               onChange={(e) => {
                 setWalletOrCollectionAddress(e.target.value);
               }}
-              placeholder="Insert NFT contract or wallet address"
+              placeholder="Enter NFT contract or wallet address"
             />
             <div className={styles.buttons_under_input}>
               {/* select the blockchain */}
