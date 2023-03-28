@@ -2,11 +2,14 @@
 import { useState, useEffect, useRef } from "react";
 // Imports from Wagmi
 import { useAccount } from "wagmi";
+// Imported Components
+import WalletAddressInput from "./WalletAddressInput.jsx";
 // Imported Stylesheets
-import styles from "../../../styles/dashboard/TokenBalancesDisplay.module.css";
+import styles from "./TokensInputs.module.css";
 
 
-export default function Inputs({
+
+export default function TokensInputs({
   fetchMethod,
   setFetchMethod,
   setIsLoading,
@@ -16,6 +19,7 @@ export default function Inputs({
   setAddressInput,
   setAddressSearch,
 }) {
+
   const { address, isConnected } = useAccount();
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
   const isFirstRender = useRef(true);
@@ -41,35 +45,20 @@ export default function Inputs({
     setIsLoading(true);
     // set state to pass to BalanceDisplay component and RENDER proper title 
     setAddressSearch(addressInput);
-    // try api call with connected wallet address
-    if (fetchMethod == "connectedWallet") {
-      try {
-        const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
-          method: "POST",
-          body: JSON.stringify({
-            address: address,
-            chain: chain,
-          }),
-        }).then((res) => res.json());
-        setTokensBalance(fetchedTokensBalance);
-      } catch (e) {
-        console.error("Error fetching connected wallet data: ", e);
-      }
-    }
-    // try api call with input address
-    else if (fetchMethod == "stringWallet") {
-      try {
-        const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
-          method: "POST",
-          body: JSON.stringify({
-            address: addressInput,
-            chain: chain,
-          }),
-        }).then((res) => res.json());
-        setTokensBalance(fetchedTokensBalance);
-      } catch (e) {
-        console.error("Error fetching input wallet data: ", e);
-      }
+    // set address based on fetchMethod
+    const properAddress = fetchMethod == "connectedWallet" ? address : addressInput;
+    // FETCH tokens balance of wallet
+    try {
+      const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
+        method: "POST",
+        body: JSON.stringify({
+          address: properAddress,
+          chain: chain,
+        }),
+      }).then((res) => res.json());
+      setTokensBalance(fetchedTokensBalance);
+    } catch (e) {
+      console.error("Error fetching wallet data: ", e);
     }
     // HIDE Loading...
     setIsLoading(false);
@@ -85,6 +74,7 @@ export default function Inputs({
       getWalletBalance();
     }
   }, []);
+
 
 // ========= ISSUE WITH SHOWING CONNECTED WALLET IF CONNECTING AFTER ONMOUNT ==========
   useEffect(() => {
@@ -116,46 +106,60 @@ export default function Inputs({
   };
 
 
+  // ==== START RENDER PROPER INPUT (based on fetchMethod) ====
+  const determineInputAttributes = (fetchMethod, address, addressInput) => {
+    if (fetchMethod === "connectedWallet") {
+      return (
+        <input
+          value={address ? address : ""}
+          readOnly={true}
+          placeholder="Connect wallet"/>
+      )
+    }  
+    else {
+      return (
+        <input
+          value={addressInput ?? ""}
+          onChange={(e) => setAddressInput(e.target.value)}
+          onKeyDown={onKeyDownHandler}
+          placeholder="Enter wallet address"
+        />
+      );
+    }
+  };
+
+  const inputAttributes = determineInputAttributes(fetchMethod, address, addressInput);
+  // ==== END RENDER PROPER INPUT (based on fetchMethod) ====
+
+
 
   // MAIN RETURN/RENDER OF COMPONENT
   // ====================================================================
   return (
     <div>
-      {/* ===== START OF RENDER TOP INPUTS ===== */}
       <div className={styles.fetch_selector_container}>
-        <h2 style={{ fontSize: "20px" }}>Explore tokens by</h2>
-
+        <h2>Explore tokens by</h2>
         {/* select the fetchMethod */}
         <div className={styles.select_container}>
           <select
             value={fetchMethod}
             onChange={(e) => changeFetchMethods(e)}
           >
-            <option value={"stringWallet"}>address</option>
+            <option value={"stringWallet"}>wallet address</option>
             <option value={"connectedWallet"}>connected wallet</option>
           </select>
         </div>
       </div>
-
       <div className={styles.inputs_container}>
         <div className={styles.input_button_container}>
           {/* wallet address input */}
-          {fetchMethod === "connectedWallet" 
-            ? <input value={address ? address : ""} readOnly={true} placeholder="Connect wallet"/>
-            : <input
-                value={addressInput ?? ""}
-                onChange={(e) => setAddressInput(e.target.value)}
-                onKeyDown={onKeyDownHandler}
-                placeholder="Enter wallet address"
-             />
-          }
+          <WalletAddressInput fetchMethod={fetchMethod} addressInput={addressInput} setAddressInput={setAddressInput} setAddressSearch={setAddressSearch} onKeyDownHandler={onKeyDownHandler}/>
+          {inputAttributes}
           <div className={styles.buttons_under_input}>
             {/* select the blockchain */}
             <div className={styles.select_container_alt}>
               <select
-                onChange={(e) => {
-                  setChain(e.target.value);
-                }}
+                onChange={(e) => {setChain(e.target.value)}}
                 defaultValue={process.env.ALCHEMY_NETWORK}
               >
                 <option value={"ETH_MAINNET"}>Mainnet</option>
@@ -175,6 +179,5 @@ export default function Inputs({
         </div>
       </div>
     </div>
-    // ===== END OF RENDER TOP INPUTS =====
   );
 }

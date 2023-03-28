@@ -1,31 +1,21 @@
 // Imported Stylesheets
-import styles from "../../../styles/dashboard/TokenBalancesDisplay.module.css";
+import styles from "./TokensDisplay.module.css";
 // Imports from Wagmi
 import { useAccount } from "wagmi";
 
 
-export default function TokensBalanceDisplay({
+
+export default function TokensDisplay({
   isLoading,
   tokensBalance,
   addressSearch,
-  addressInput,
-  fetchMethod
 }) {
+
   const { address, isConnected } = useAccount();
 
 
   // ==== START RENDER PROPER H2 (instructions/wallet address of data being displayed) ====
   const determineTokenPanelTitle = (addressSearch, address, tokensBalance) => {
-
-    {console.log("==================")}
-    {console.log("from determineTokenPanelTitle")}
-    {console.log("tokensBalance: ", tokensBalance)}
-    {console.log("tokensBalance.message: ", tokensBalance?.message)}
-    {console.log("address: ", address)}
-    {console.log("isConnected: ", isConnected)}
-    {console.log("addressInput: ", addressInput)}
-    {console.log("addressSearch: ", addressSearch)}
-    {console.log("fetchMethod: ", fetchMethod)}
 
     if (addressSearch && tokensBalance && !tokensBalance.message || isConnected && tokensBalance && !tokensBalance.message) {
       const titleText = addressSearch ? addressSearch : address;
@@ -61,31 +51,22 @@ export default function TokensBalanceDisplay({
   // ====================================================================
   return (
     <>
-      {/* ===== START OF RENDER DATA ===== */}
       {/* if loading data, RENDER Loading... */}
-      {isLoading ? (
-        <div className={styles.loading_box}>
-          <p>Loading...</p>
-        </div>
-      ) : (
+      {isLoading 
+        ? (
+          <div className={styles.loading_box}>
+            <p>Loading...</p>
+          </div>
+          ) 
+        : (
         // if not loading, RENDER...
         <div className={styles.token_panel_container}>
           <div className={styles.token_box}>
             {/* instructions to connect or enter wallet address */}
-            {console.log("==================")}
-            {console.log("from BalanceDisplay")}
-            {console.log("tokensBalance: ", tokensBalance)}
-            {console.log("tokensBalance.message: ", tokensBalance?.message)}
-            {console.log("address: ", address)}
-            {console.log("isConnected: ", isConnected)}
-            {console.log("addressInput: ", addressInput)}
-            {console.log("addressSearch: ", addressSearch)}
-            {console.log("fetchMethod: ", fetchMethod)}
             <h2>{tokenPanelTitle}</h2>
             {/* display each token and it's balance from the wallet address */}
             <div className={styles.tokens_container}>
-              {tokensBalance?.length &&
-                tokensBalance.map((token, index) => {
+              {tokensBalance?.length && tokensBalance.map((token, index) => {
                   return (
                     <div key={index} className={styles.token}>
                       <div className={styles.token_name_container}>
@@ -105,7 +86,6 @@ export default function TokensBalanceDisplay({
                           <p className={styles.token_balance}>
                             {new Intl.NumberFormat().format(token.balance)}
                           </p>
-                          {/* <p className={styles.token_balance}>{token.balance}</p> */}
                           <p className={styles.token_symbol}>{token.symbol}</p>
                         </div>
                       </div>
@@ -116,7 +96,6 @@ export default function TokensBalanceDisplay({
           </div>
         </div>
       )}
-      {/* ===== END OF RENDER DATA ===== */}
     </>
   );
 }
