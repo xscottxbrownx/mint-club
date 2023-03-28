@@ -5,22 +5,23 @@ import { useAccount } from "wagmi";
 // Imported Stylesheet
 import styles from "./HistoryDisplay.module.css";
 
+
+
 export default function HistoryDisplay() {
   // available from connected wallet
-  const { address, isConnected, isDisconnected } = useAccount();
+  const { address, isConnected } = useAccount();
 
   const [transactionHistory, setTransactionHistory] = useState();
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
-  const [fetchMethod, setFetchMethod] = useState(
-    address ? "connectedWallet" : "wallet"
-  );
+  const [fetchMethod, setFetchMethod] = useState(address ? "connectedWallet" : "wallet");
   const [addressInput, setAddressInput] = useState(address ? address : null);
   const [isLoading, setIsloading] = useState(false);
+
 
   // set fetchMethod based on selection (wallet address, collection, or connected wallet)
   const changeFetchMethods = (e) => {
     switch (e.target.value) {
-      case "wallet":
+      case "stringWallet":
         setAddressInput("");
         break;
       case "connectedWallet":
@@ -29,6 +30,7 @@ export default function HistoryDisplay() {
     }
     setFetchMethod(e.target.value);
   };
+
 
   // fetch transaction history of address (last 30 days on free plan of NftGo)
   const getTransactionHistory = async () => {
@@ -59,6 +61,7 @@ export default function HistoryDisplay() {
     console.log(transactionHistory);
   };
 
+
   // ON COMPONENT MOUNT :
   // if a wallet is connected to the site
   // try to fetch the transaction history of wallet
@@ -68,12 +71,14 @@ export default function HistoryDisplay() {
     }
   }, []);
 
+
   // allow ENTER key to run same function as SEARCH button onClick
   const onKeyDownHandler = (e) => {
     if (e.keyCode === 13) {
       getTransactionHistory();
     }
   };
+
 
   // ==== START RENDER PROPER H2 (instructions/wallet address of data being displayed) ====
   const determineHistoryPanelTitle = (addressInput, address) => {
@@ -94,6 +99,8 @@ export default function HistoryDisplay() {
   const historyPanelTitle = determineHistoryPanelTitle(addressInput, address);
   // ==== END RENDER PROPER H2 (instructions/wallet address of data being displayed) ====
 
+
+
   // MAIN RETURN/RENDER OF COMPONENT
   // ====================================================================
   return (
@@ -101,17 +108,15 @@ export default function HistoryDisplay() {
       <div>
         {/* ===== START OF RENDER TOP INPUTS ===== */}
         <div className={styles.fetch_selector_container}>
-          <h2 style={{ fontSize: "20px" }}>Explore history by</h2>
-
+          <h2>Explore history by</h2>
           {/* select the fetchMethod */}
           <div className={styles.select_container}>
             <select value={fetchMethod} onChange={(e) => changeFetchMethods(e)}>
-              <option value={"wallet"}>address</option>
+              <option value={"stringWallet"}>wallet address</option>
               <option value={"connectedWallet"}>connected wallet</option>
             </select>
           </div>
         </div>
-
         <div className={styles.inputs_container}>
           <div className={styles.input_button_container}>
             {/* wallet address input */}
@@ -133,9 +138,7 @@ export default function HistoryDisplay() {
               {/* select the blockchain */}
               <div className={styles.select_container_alt}>
                 <select
-                  onChange={(e) => {
-                    setChain(e.target.value);
-                  }}
+                  onChange={(e) => {setChain(e.target.value)}}
                   defaultValue={process.env.ALCHEMY_NETWORK}
                 >
                   <option value={"ETH_MAINNET"}>Mainnet</option>
@@ -157,6 +160,7 @@ export default function HistoryDisplay() {
       </div>
       {/* ===== END OF RENDER TOP INPUTS ===== */}
 
+
       {/* ===== START OF RENDER DATA ===== */}
       {/* if loading data, RENDER Loading... */}
       {isLoading ? (
@@ -171,7 +175,7 @@ export default function HistoryDisplay() {
             <h2>{historyPanelTitle}</h2>
             {/* display each token and it's balance from the wallet address */}
             <div className={styles.transactions_container}>
-              <table style={{ width: "70vw" }}>
+              <table className={styles.table}>
                 <thead>
                   <tr>
                     <th>Action</th>
@@ -179,54 +183,39 @@ export default function HistoryDisplay() {
                     <th>Token ID</th>
                     <th>{`Value (ETH)`}</th>
                     <th>{`Value (USD)`}</th>
-                    <th>Tx Link</th>
+                    <th>Etherscan</th>
                     <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {transactionHistory &&
-                    transactionHistory.transactions.map(
-                      (transaction, index) => {
-                        const { action, nft, price, time, tx_hash } =
-                          transaction;
-                        return (
-                          <tr key={index} className={styles.transaction}>
-                            
-                            <td style={{ textAlign: "center" }}>{action}</td>
-                            <td style={{ textAlign: "center" }}>
-                              {nft.collection_name
-                                ? nft.collection_name
-                                : `unknown`}
-                            </td>
-                            <td style={{textAlign: "center"}}>ID#{nft.token_id}</td>
-                            <td style={{ textAlign: "center" }}>{price?.quantity ? price.quantity : "---"}</td>
-                            <td style={{ textAlign: "center" }}>{price?.usd ? `$${price.usd.toFixed(2)}` : "---"}</td>
-                            <td style={{ textAlign: "center" }}>
-                              <a
-                                href={`https://etherscan.io/tx/${tx_hash}`}
-                                target="_blank"
-                                rel="noreferrer noopener"
-                              >
-                                <img
-                                  src={
-                                    "https://etherscan.io/images/brandassets/etherscan-logo-circle.svg"
-                                  }
-                                  width="15px"
-                                  height="15px"
-                                />
-                              </a>
-                            </td>
-                            <td style={{ textAlign: "center" }}>
-                              {new Intl.DateTimeFormat("en-US", {
-                                year: "2-digit",
-                                month: "numeric",
-                                day: "numeric",
-                              }).format(time)}
-                            </td>
-                          </tr>
-                        );
-                      }
-                    )}
+                  {transactionHistory && transactionHistory.transactions.map((transaction, index) => {
+                    const { action, nft, price, time, tx_hash } = transaction;
+                    return (
+                      <tr key={index} className={styles.transaction}>
+                        <td>{action}</td>
+                        <td>{nft.collection_name ? nft.collection_name : `unknown`}</td>
+                        <td>{nft.token_id}</td>
+                        <td>{price?.quantity ? price.quantity : "---"}</td>
+                        <td>{price?.usd ? `$${price.usd.toFixed(2)}` : "---"}</td>
+                        <td>
+                          <a
+                            href={`https://etherscan.io/tx/${tx_hash}`}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                          >
+                            <img src={"https://etherscan.io/images/brandassets/etherscan-logo-circle.svg"}/>
+                          </a>
+                        </td>
+                        <td>
+                          {new Intl.DateTimeFormat("en-US", {
+                            year: "2-digit",
+                            month: "numeric",
+                            day: "numeric",
+                          }).format(time)}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

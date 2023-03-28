@@ -13,6 +13,10 @@
   margin-bottom: 1.5rem;
 }
 
+.fetch_selector_container h2{
+  font-size: 20px;
+}
+
 .select_container {
   text-align: center;
   padding: 0.5rem 1rem;
@@ -154,7 +158,11 @@
   flex-direction: column;
 }
 
-.transactions_container th{
+.table{
+  width: 70vw;
+}
+
+.table th{
   color: #008fff;
 }
 
@@ -164,5 +172,14 @@
 
 .transaction:nth-child(even) {
   background-color: #edecec;
+}
+
+.table td{
+  text-align: center;
+}
+
+.table img{
+  width: 15px;
+  height: 15px;
 }
 /* ===== END HISTORY DISPLAY DIV ===== */
