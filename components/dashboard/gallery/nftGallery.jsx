@@ -86,10 +86,8 @@ export default function NFTGallery({}) {
   // fetch NFTs if fetchMethod or spamFilter change
   useEffect(() => {
     fetchNFTs();
-  }, [fetchMethod]);
-  useEffect(() => {
-    fetchNFTs();
-  }, [spamFilter]);
+  }, [fetchMethod, spamFilter]);
+  
 
 
   // render NFTs from address as a Gallery/grid
