@@ -9,3 +9,9 @@
   color: white;
   background-color: #333639;
 }
+
+.tokenBalances_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
