@@ -9,6 +9,7 @@ import NftCard from "./NftCard";
 
 
 export default function NFTGallery({}) {
+
   const { address, isConnected } = useAccount();
   const [nfts, setNfts] = useState();
   const [walletOrCollectionAddress, setWalletOrCollectionAddress] = useState(isConnected ? address : "vitalik.eth");
@@ -17,6 +18,7 @@ export default function NFTGallery({}) {
   const [spamFilter, setSpamFilter] = useState(true);
   const [isLoading, setIsloading] = useState(false);
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
+
 
   // set fetchMethod based on selection (wallet address, collection, or connected wallet)
   const changeFetchMethod = (e) => {
@@ -38,23 +40,29 @@ export default function NFTGallery({}) {
     setFetchMethod(e.target.value);
   };
 
+
   // fetch NFTs with proper API call based on fetchMethod
   const fetchNFTs = async (pagekey) => {
+    // RENDER Loading...
     setIsloading(true);
     setNfts();
     if (!pageKey) setIsloading(true);
+    // set api endpoint based on fetchMethod
     const endpoint =
       fetchMethod == "wallet" || fetchMethod == "connectedWallet"
         ? "/api/getNftsForOwner"
         : "/api/getNftsForCollection";
+    // set address based on fetchMethod
+    const properAddress =
+      fetchMethod == "connectedWallet" 
+        ? address 
+        : walletOrCollectionAddress;
+    // FETCH NFTs of wallet
     try {
       const res = await fetch(endpoint, {
         method: "POST",
         body: JSON.stringify({
-          address:
-            fetchMethod == "connectedWallet"
-              ? address
-              : walletOrCollectionAddress,
+          address: properAddress,
           pageKey: pagekey ? pagekey : null,
           chain: chain,
           excludeFilter: spamFilter,
@@ -78,10 +86,12 @@ export default function NFTGallery({}) {
       //   setPageKey();
       // }
     } catch (e) {
-      console.log(e);
+      console.error("Error fetching NFTs from wallet: ",e);
     }
+    // HIDE Loading...
     setIsloading(false);
   };
+
 
   // fetch NFTs if fetchMethod or spamFilter change
   useEffect(() => {
@@ -90,6 +100,8 @@ export default function NFTGallery({}) {
   
 
 
+  // MAIN RETURN/RENDER OF COMPONENT
+  // ====================================================================
   // render NFTs from address as a Gallery/grid
   return (
     <div className={styles.nft_gallery_page}>

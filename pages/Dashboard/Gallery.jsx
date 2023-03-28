@@ -14,9 +14,5 @@ export default function Gallery() {
 }
 
 Gallery.getLayout = function getLayout(page) {
-	return (
-    <DashboardLayout>
-      {page}
-    </DashboardLayout>
-	);
+	return <DashboardLayout>{page}</DashboardLayout>
 }
