@@ -1,36 +1,40 @@
+// Imports from React
+import { useState } from "react";
 // Imported Components
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
+import ChartingInputs from '../../components/dashboard/charting/ChartingInputs';
+import ChartingDisplay from '../../components/dashboard/charting/ChartingDisplay';
 // Imported stylesheet
-import classes from "../../styles/dashboard/Charting.module.css";
+import styles from "../../styles/dashboard/Charting.module.css";
 
 
-const Charting = () => {
+
+export default function Charting() {
+
+  const bayc = "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d";
+  const [addressInput, setAddressInput] = useState(bayc);
+  const [addressSearch, setAddressSearch] = useState(addressInput);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className={classes.chartingContainer}>
-      <div className={classes.chartingImageContainer}>
-        <img
-          src="https://via.placeholder.com/1200x600/1e1f21/44484d?text=CHART+COMPONENT"
-          alt="placeholder of chart"
+    <div className={styles.main}>
+      <div className={styles.charting_page}>
+        <ChartingInputs 
+          setIsLoading={setIsLoading}
+          addressInput={addressInput}
+          setAddressInput={setAddressInput}
+          setAddressSearch={setAddressSearch}
         />
-      </div>
-      <div className={classes.chartingButtonContainer}>
-        <button>Button 1</button>
-        <button>Button 2</button>
-        <button>Button 3</button>
-        <button>Button 4</button>
-        <button>Button 5</button>
+        <ChartingDisplay 
+          isLoading={isLoading}
+          addressSearch={addressSearch}
+        />
       </div>
     </div>
   );
-};
-
-export default Charting;
+}
 
 
 Charting.getLayout = function getLayout(page) {
-	return (
-    <DashboardLayout>
-      {page}
-    </DashboardLayout>
-	);
+	return <DashboardLayout>{page}</DashboardLayout>;
 }
