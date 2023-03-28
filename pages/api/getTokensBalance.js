@@ -63,7 +63,8 @@ export default async function handler(req, res) {
             symbol,
             logo,
             decimals,
-            balance: convertedBalance.toPrecision(2),
+            // balance: convertedBalance.toPrecision(2),
+            balance: Number(convertedBalance),
             address,
           };
           unifiedBalanceAndMetadata.push(tokenBalanceAndMetadata);
@@ -80,10 +81,3 @@ export default async function handler(req, res) {
     });
   }
 }
-
-const settings = {
-  apiKey: process.env.ALCHEMY_API_KEY,
-  network: Network.ETH_MAINNET,
-};
-
-const alchemy = new Alchemy(settings);
