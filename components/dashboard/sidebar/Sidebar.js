@@ -115,9 +115,9 @@ const Sidebar = () => {
           >
             <DashNavLink
               expandSidebar={expandSidebar}
-              link="/Dashboard/Marketplace"
-              text="Shop"
-              icon={faDollarSign}
+              link="/Dashboard/Charting"
+              text="Chart"
+              icon={faChartLine}
             />
           </li>
           <li
@@ -129,9 +129,9 @@ const Sidebar = () => {
           >
             <DashNavLink
               expandSidebar={expandSidebar}
-              link="/Dashboard/Charting"
-              text="Chart"
-              icon={faChartLine}
+              link="/Dashboard/Marketplace"
+              text="Shop"
+              icon={faDollarSign}
             />
           </li>
           <li
