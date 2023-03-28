@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useAccount } from "wagmi";
 // Imported Components
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import TokensBalanceDisplay from "../../components/dashboard/wallet/TokensBalanceDisplay";
-import Inputs from "../../components/dashboard/wallet/Inputs";
+import TokensDisplay from "../../components/dashboard/wallet/TokensDisplay";
+import TokensInputs from "../../components/dashboard/wallet/TokensInputs";
 // Imported stylesheet
 import styles from "../../styles/dashboard/Wallet.module.css";
 
@@ -22,7 +22,7 @@ export default function Wallet() {
   return (
     <div className={styles.main}>
       <div className={styles.tokenBalances_page}>
-        <Inputs
+        <TokensInputs
           fetchMethod={fetchMethod}
           setFetchMethod={setFetchMethod}
           setIsLoading={setIsLoading}
@@ -32,12 +32,10 @@ export default function Wallet() {
           setAddressInput={setAddressInput}
           setAddressSearch={setAddressSearch}
         />
-        <TokensBalanceDisplay
+        <TokensDisplay
           isLoading={isLoading}
           tokensBalance={tokensBalance}
           addressSearch={addressSearch}
-          addressInput={addressInput}
-          fetchMethod={fetchMethod}
         />
       </div>
     </div>
