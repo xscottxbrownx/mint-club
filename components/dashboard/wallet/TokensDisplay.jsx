@@ -1,7 +1,7 @@
-// Imported Stylesheets
-import styles from "./TokensDisplay.module.css";
 // Imports from Wagmi
 import { useAccount } from "wagmi";
+// Imported Stylesheets
+import styles from "./TokensDisplay.module.css";
 
 
 

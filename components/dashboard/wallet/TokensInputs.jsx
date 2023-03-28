@@ -43,10 +43,13 @@ export default function TokensInputs({
   const getWalletBalance = async () => {
     // RENDER Loading...
     setIsLoading(true);
-    // set state to pass to BalanceDisplay component and RENDER proper title 
+    // set state to pass to BalanceDisplay component and RENDER proper title
     setAddressSearch(addressInput);
     // set address based on fetchMethod
-    const properAddress = fetchMethod == "connectedWallet" ? address : addressInput;
+    const properAddress =
+      fetchMethod == "connectedWallet" 
+        ? address 
+        : addressInput;
     // FETCH tokens balance of wallet
     try {
       const fetchedTokensBalance = await fetch("/api/getTokensBalance", {
@@ -76,60 +79,26 @@ export default function TokensInputs({
   }, []);
 
 
-// ========= ISSUE WITH SHOWING CONNECTED WALLET IF CONNECTING AFTER ONMOUNT ==========
+  // ========= ISSUE WITH SHOWING CONNECTED WALLET IF CONNECTING AFTER ONMOUNT ==========
   useEffect(() => {
     // don't run onMount/initial component load
     if (isFirstRender.current) {
       isFirstRender.current = false;
-      return
+      return;
     }
     // rest of code to run after first skipped
     if (addressInput === "" && tokensBalance === undefined) {
       console.log("useEffect trigged on connecting");
       setFetchMethod("connectedWallet");
-      setAddressInput(address);  
+      setAddressInput(address);
       setAddressSearch(addressInput);
-      getWalletBalance();  // think it fails because seemingly setAddressSeach(addressInput) doesn't happen
+      getWalletBalance(); // think it fails because seemingly setAddressSeach(addressInput) doesn't happen
     }
     if (fetchMethod === "connectedWallet") {
       getWalletBalance();
     }
-  }, [isConnected])
-// ====================================================================================
-
-
-  // allow ENTER key to run same function as SEARCH button onClick
-  const onKeyDownHandler = (e) => {
-    if (e.keyCode === 13) {
-      getWalletBalance();
-    }
-  };
-
-
-  // ==== START RENDER PROPER INPUT (based on fetchMethod) ====
-  const determineInputAttributes = (fetchMethod, address, addressInput) => {
-    if (fetchMethod === "connectedWallet") {
-      return (
-        <input
-          value={address ? address : ""}
-          readOnly={true}
-          placeholder="Connect wallet"/>
-      )
-    }  
-    else {
-      return (
-        <input
-          value={addressInput ?? ""}
-          onChange={(e) => setAddressInput(e.target.value)}
-          onKeyDown={onKeyDownHandler}
-          placeholder="Enter wallet address"
-        />
-      );
-    }
-  };
-
-  const inputAttributes = determineInputAttributes(fetchMethod, address, addressInput);
-  // ==== END RENDER PROPER INPUT (based on fetchMethod) ====
+  }, [isConnected]);
+  // ====================================================================================
 
 
 
@@ -141,10 +110,7 @@ export default function TokensInputs({
         <h2>Explore tokens by</h2>
         {/* select the fetchMethod */}
         <div className={styles.select_container}>
-          <select
-            value={fetchMethod}
-            onChange={(e) => changeFetchMethods(e)}
-          >
+          <select value={fetchMethod} onChange={(e) => changeFetchMethods(e)}>
             <option value={"stringWallet"}>wallet address</option>
             <option value={"connectedWallet"}>connected wallet</option>
           </select>
@@ -152,9 +118,12 @@ export default function TokensInputs({
       </div>
       <div className={styles.inputs_container}>
         <div className={styles.input_button_container}>
-          {/* wallet address input */}
-          <WalletAddressInput fetchMethod={fetchMethod} addressInput={addressInput} setAddressInput={setAddressInput} setAddressSearch={setAddressSearch} onKeyDownHandler={onKeyDownHandler}/>
-          {inputAttributes}
+          <WalletAddressInput
+            fetchMethod={fetchMethod}
+            addressInput={addressInput}
+            setAddressInput={setAddressInput}
+            fetchData={getWalletBalance}
+          />
           <div className={styles.buttons_under_input}>
             {/* select the blockchain */}
             <div className={styles.select_container_alt}>

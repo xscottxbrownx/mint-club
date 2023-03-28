@@ -12,6 +12,7 @@ import styles from "../../styles/dashboard/Wallet.module.css";
 
 
 export default function Wallet() {
+
   const { address, isConnected } = useAccount();
   const [fetchMethod, setFetchMethod] = useState(isConnected ? "connectedWallet" : "stringWallet")
   const [addressInput, setAddressInput] = useState(isConnected && address ? address : "");
@@ -19,6 +20,7 @@ export default function Wallet() {
   const [isLoading, setIsLoading] = useState(false);
   const [tokensBalance, setTokensBalance] = useState();
 
+  
   return (
     <div className={styles.main}>
       <div className={styles.tokenBalances_page}>
