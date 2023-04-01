@@ -1,14 +1,23 @@
-// /*import BGimageTablet from '../assets/Tablet_BG.svg';
-// import BGimageMobile from '../assets/Mobile_BG.svg';*/
+// Imports from React
+import { useState, useEffect } from "react";
+// Imports from Next
+import Image from "next/image.js";
 // Imported Components
 import GeneralLayout from "../components/general/GeneralLayout.jsx";
-// Import stylesheet
+// Import Stylesheet
 import classes from "../styles/Index.module.css";
+// Imported Assests
+import BGimageDesktop from "../public/Desktop_BG.png"
 
 
 
 export default function Home() {
-  return <div className={classes.generalIntro}></div>;
+
+  return (
+    <div className={classes.generalIntro}>
+      <Image src={BGimageDesktop} alt="Free Mint Club logo" className={classes.generalIntroImage} />
+    </div>
+  );
 }
 
 

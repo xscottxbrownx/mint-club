@@ -1,9 +1,10 @@
 .generalIntro {
   width: 100vw;
   height: calc(100vh - 123px);
-  background-image: url("../public/Desktop_BG.png");
-  background-size: cover;
-  background-position: center center;
-  background-attachment: local;
-  background-color: #6dcca2;
+}
+
+.generalIntroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
