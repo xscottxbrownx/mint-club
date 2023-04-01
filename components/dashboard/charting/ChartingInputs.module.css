@@ -1,9 +1,44 @@
-/* ===== START ADDRESS INPUT AND NETWORK/SEARCH BUTTONS ===== */
-.margin{
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
+/* ===== START EXPLORE TOKENS BY: WALLET / CONNECTED WALLET SELECTOR ===== */
+.fetch_selector_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
+@media screen and (max-width: 475px) {
+  .fetch_selector_container{
+    flex-direction: column;
+    gap: 0rem;
+  }
+}
+
+.fetch_selector_container h2{
+  font-size: 20px;
+}
+
+.select_container {
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  background-color: #ecf0f9;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.select_container select {
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #ecf0f9;
+  outline: none;
+  border: none;
+  color: #008fff;
+}
+/* ===== END EXPLORE TOKENS BY: WALLET / CONNECTED WALLET SELECTOR ===== */
+
+/* ===== START ADDRESS INPUT AND NETWORK/SEARCH BUTTONS ===== */
 .inputs_container {
   display: flex;
   flex-direction: column;
@@ -11,6 +46,7 @@
   align-items: center;
   justify-self: center;
   row-gap: 1.5rem;
+  padding-bottom: 3rem;
 }
 
 .input_button_container {
@@ -32,14 +68,20 @@
   display: flex;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 825px) {
   .input_button_container{
     flex-direction: column;
     align-items: center;
     justify-self: center;
   }
   .input_button_container input{
-    width: 70%;
+    width: 420px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .input_button_container input{
+    width: 200px;
   }
 }
 
@@ -50,7 +92,6 @@
   display: flex;
   border-radius: 3px;
   background-color: black;
-  cursor: pointer;
   border-radius: 8px;
 }
 
@@ -59,6 +100,7 @@
   outline: none;
   border: none;
   color: white;
+  cursor: default;
 }
 
 .button_blue {
@@ -67,9 +109,11 @@
   display: flex;
   border-radius: 3px;
   background-color: #008fff;
-  cursor: pointer;
   border-radius: 8px;
   color: white;
-  cursor: pointer;
+}
+
+.button_blue a{
+  cursor: default;
 }
 /* ===== END ADDRESS INPUT AND NETWORK/SEARCH BUTTONS ===== */
