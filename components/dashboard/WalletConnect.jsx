@@ -1,10 +1,10 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import styles from "./GalleryConnect.module.css";
+import styles from "./WalletConnect.module.css";
 
 
-export default function GalleryConnect() {
+export default function WalletConnect() {
   return (
-    <div className={styles.gallery_connect}>
+    <div className={styles.wallet_connect}>
       <ConnectButton accountStatus={{
           smallScreen: "avatar",
           largeScreen: "full",
