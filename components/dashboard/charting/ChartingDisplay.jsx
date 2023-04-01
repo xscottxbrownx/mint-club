@@ -12,8 +12,8 @@ export default function ChartingDisplay({ addressSearch }) {
       {/* floor price chart widget */}
       <Script
         type="module"
-        src="https://static-assets.nftgo.io/data-partner/prod/widgets/price-graph.js">
-      </Script>
+        src="https://static-assets.nftgo.io/data-partner/prod/widgets/price-graph.js"
+      />
       <price-graph 
         contract={addressSearch}
         data-theme="light"
@@ -21,8 +21,32 @@ export default function ChartingDisplay({ addressSearch }) {
         showOutliers="true"
         defaultTimeSpan="7d"
         timeSpan='["24h","7d","30d"]'
-        language="en">
-      </price-graph>
+        language="en"
+      />
+
+      {/* holding period chart */}
+      <Script
+        type="module"
+        src="https://static-assets.nftgo.io/data-partner/prod/widgets/holding-period-chart.js"
+      />
+      <holding-period-chart
+        contract={addressSearch}
+        data-theme="light"
+        showLegends="true"
+        language="en"
+      />
+
+      {/* holding amount chart */}
+      <Script
+        type="module"
+        src="https://static-assets.nftgo.io/data-partner/prod/widgets/holding-amount-chart.js"
+      />
+      <holding-amount-chart
+        contract={addressSearch}
+        data-theme="light"
+        showLegends="true"
+        language="en"
+      />
     </div>
   );
 }
