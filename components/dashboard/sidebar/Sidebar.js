@@ -3,25 +3,20 @@ import { useState } from "react";
 // Imports from Next
 import Link from "next/link";
 import Image from "next/image";
-// Imported custom components
+// Imported Components
 import { DashNavLink } from "./dashboardNavLink/DashNavLink";
-// Imported stylesheet
+import SidebarLinksData from "../../../data/SidebarLinks";
+// Imported Stylesheet
 import classes from "./Sidebar.module.css";
-// Imported assets
+// Imported Assets
 import FMC_logo from "../../../public/navbar_logo_dropshadow.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBell,
-  faImage,
-  faCoins,
-  faChartLine,
-  faChevronLeft,
-  faChevronRight,
-  faDollarSign,
-  faLandmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
-const Sidebar = () => {
+
+
+export default function Sidebar() {
+
   const [expandSidebar, setExpandSidebar] = useState(false);
 
   const handleClick = () => {
@@ -30,10 +25,38 @@ const Sidebar = () => {
     setExpandSidebar((expandSidebar) => !expandSidebar);
   };
 
+  const sidebarChevronIcon = 
+    expandSidebar 
+      ? faChevronLeft
+      : faChevronRight
+
+  const sidebarLinks = SidebarLinksData.map((sidebarlink, index) => {
+    const { link, text, icon } = sidebarlink;
+    return (
+      <li key={index} onClick={() => {
+        if (expandSidebar) {
+          handleClick();
+        }
+      }}>
+        <DashNavLink
+          expandSidebar={expandSidebar}
+          link={link}
+          text={text}
+          icon={icon}
+        />
+      </li>
+    );
+  });
+
+
+  
+  // MAIN RETURN/RENDER OF COMPONENT
+  // ====================================================================
   return (
     <nav className={classes.sidebar}>
       <div className={classes.sidebarIconsContainer}>
         <div className={classes.sidebarLogoChevronContainer}>
+          {/* FMC logo link back to homepage */}
           <Link href="/">
             <Image
               src={FMC_logo}
@@ -43,18 +66,17 @@ const Sidebar = () => {
             />
           </Link>
           <span></span>
+          {/* arrow icon to open/close sidebar */}
           <div
             className={
               expandSidebar
                 ? classes.sidebarChevronLeft
                 : classes.sidebarChevronRight
             }
-            onClick={() => {
-              handleClick();
-            }}
+            onClick={() => {handleClick()}}
           >
             <FontAwesomeIcon
-              icon={expandSidebar ? faChevronLeft : faChevronRight}
+              icon={sidebarChevronIcon}
               className={`${expandSidebar && classes.sidebarLinkActive} ${
                 classes.sidebarLink
               } fa-2x`}
@@ -63,96 +85,12 @@ const Sidebar = () => {
           <span></span>
         </div>
         <span></span>
+        {/* links to dashboard components */}
         <ul>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/Gallery"
-              text="Gallery"
-              icon={faImage}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/Wallet"
-              text="Wallet"
-              icon={faCoins}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/History"
-              text="History"
-              icon={faLandmark}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/Charting"
-              text="Chart"
-              icon={faChartLine}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/Marketplace"
-              text="Shop"
-              icon={faDollarSign}
-            />
-          </li>
-          <li
-            onClick={() => {
-              if (expandSidebar) {
-                handleClick();
-              }
-            }}
-          >
-            <DashNavLink
-              expandSidebar={expandSidebar}
-              link="/Dashboard/Notifications"
-              text="Notify"
-              icon={faBell}
-            />
-          </li>
+          {sidebarLinks}
         </ul>
         <span></span>
       </div>
     </nav>
   );
-};
-
-export default Sidebar;
+}

@@ -8,13 +8,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Imported stylesheet
 import classes from "./DashNavLink.module.css";
 
+
+
 export const DashNavLink = ({ expandSidebar, link, icon, text }) => {
+
   const router = useRouter();
   console.log("router.pathname", router.pathname);
   console.log("router.asPath", router.asPath);
+
   let curPath =
-    // ========= PROBLEM ==========
     router.pathname.includes(link) && classes.sidebarLinkActive
+
 
   return (
     <Link
@@ -22,7 +26,6 @@ export const DashNavLink = ({ expandSidebar, link, icon, text }) => {
       className={`${curPath} ${classes.sidebarLink} ${classes.flex} fa-2x`}
     >
       {expandSidebar && <p>{text}</p>}
-
       <FontAwesomeIcon icon={icon} />
     </Link>
   );

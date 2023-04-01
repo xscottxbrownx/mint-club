@@ -5,7 +5,9 @@ import GeneralLayout from "../../components/general/GeneralLayout";
 // Imported stylesheet
 import classes from "../../styles/general/Team.module.css";
 
-const Team = () => {
+
+
+export default function Team() {
   return (
     <>
       <div className={classes.teamContainer}>
@@ -29,13 +31,7 @@ const Team = () => {
   );
 };
 
-export default Team;
-
 
 Team.getLayout = function getLayout(page) {
-  return (
-    <GeneralLayout>
-      {page}
-    </GeneralLayout>
-  )
+  return <GeneralLayout>{page}</GeneralLayout>;
 }

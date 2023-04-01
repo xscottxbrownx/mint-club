@@ -37,8 +37,8 @@
   text-decoration: underline;
 }
 
+
 /* ----- START OF MOBILE HAMBURGER MENU (within navbar) ----- */
-/* --- styles hamburger menu (but not shown until -600px screen) --- */
 .hamburgerIcon,
 .closeIcon {
   position: absolute;

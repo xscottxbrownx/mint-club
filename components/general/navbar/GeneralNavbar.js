@@ -11,8 +11,12 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import classes from "./GeneralNavbar.module.css";
 
 
-const GeneralNavbar = () => {
+
+export default function GeneralNavbar() {
+  
   const [active, setActive] = useState(false);
+  const links = ["About", "Team", "Vision"];
+
 
   const handleClick = () => {
     const navmenu = document.getElementsByClassName(classes.navlist)[0];
@@ -20,65 +24,37 @@ const GeneralNavbar = () => {
     setActive((active) => !active);
   };
 
+
+  const menuIcon = 
+    active 
+      ? <FontAwesomeIcon className={`${classes.closeIcon} fa-2x`} icon={faTimes} />
+      : <FontAwesomeIcon className={`${classes.hamburgerIcon} fa-2x`} icon={faBars} />
+
+
+
   return (
     <nav className={classes.navbar}>
       <Link href="/" className={classes.navlogo}>
         <Image priority src={FMC_logo} alt="FMC logo" />
       </Link>
 
-      <button
-        onClick={() => {
-          handleClick();
-        }}
-      >
-        {active ? (
-          <FontAwesomeIcon
-            className={`${classes.closeIcon} fa-2x`}
-            icon={faTimes}
-          />
-        ) : (
-          <FontAwesomeIcon
-            className={`${classes.hamburgerIcon} fa-2x`}
-            icon={faBars}
-          />
-        )}
+      <button onClick={() => {handleClick()}}>
+        {menuIcon}
       </button>
 
       <div className={classes.navlist}>
         <ul>
-          <li>
-            <Link
-              href="/General/About"
-              className={classes.navlink}
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/General/Team"
-              className={classes.navlink}
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              Team
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/General/Vision"
-              className={classes.navlink}
-              onClick={() => {
-                handleClick();
-              }}
-            >
-              Vision
-            </Link>
-          </li>
+          {links.map((link, index) => (
+            <li key={index}>
+              <Link
+                href={`/General/${link}`}
+                className={classes.navlink}
+                onClick={() => {handleClick()}}
+              >
+                {link}
+              </Link>
+            </li>
+          ))}
           <li>
             <Link href="/Dashboard/Intro" className={classes.navlink}>
               Member Dashboard
@@ -88,6 +64,4 @@ const GeneralNavbar = () => {
       </div>
     </nav>
   );
-};
-
-export default GeneralNavbar;
+}
