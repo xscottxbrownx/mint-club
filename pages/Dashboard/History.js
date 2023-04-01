@@ -28,7 +28,6 @@ export default function History() {
           fetchMethod={fetchMethod}
           setFetchMethod={setFetchMethod}
           setIsLoading={setIsLoading}
-          transactionHistory={transactionHistory}
           setTransactionHistory={setTransactionHistory}
           addressInput={addressInput}
           setAddressInput={setAddressInput}

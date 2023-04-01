@@ -12,7 +12,6 @@ export default function HistoryInputs({
   fetchMethod,
   setFetchMethod,
   setIsLoading,
-  transactionHistory,
   setTransactionHistory,
   addressInput,
   setAddressInput,
@@ -21,7 +20,6 @@ export default function HistoryInputs({
 
   const { address, isConnected } = useAccount();
   const [chain, setChain] = useState(process.env.NEXT_PUBLIC_ALCHEMY_NETWORK);
-  const isFirstRender = useRef(true);
 
 
   // set fetchMethod based on selection (wallet address, collection, or connected wallet)
@@ -66,7 +64,6 @@ export default function HistoryInputs({
     }
     // HIDE Loading...
     setIsLoading(false);
-    console.log(transactionHistory);
   };
   // ==== END FETCH TRANSACTION HISTORY OF WALLET ====
 

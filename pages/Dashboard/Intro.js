@@ -4,7 +4,7 @@ import DashboardLayout from "../../components/dashboard/DashboardLayout.jsx";
 import classes from "../../styles/dashboard/Intro.module.css";
 
 
-const Intro = () => {
+export default function Intro() {
   return (
     <div className={classes.dashboardIntro}>
       <h1>You are now logged into the Member Dashboard</h1>
@@ -12,8 +12,6 @@ const Intro = () => {
     </div>
   );
 };
-
-export default Intro;
 
 
 Intro.getLayout = function getLayout(page) {

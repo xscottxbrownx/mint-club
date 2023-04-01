@@ -57,7 +57,7 @@ export default function TokensDisplay({
           <div className={styles.loading_box}>
             <p>Loading...</p>
           </div>
-          ) 
+        ) 
         : (
         // if not loading, RENDER...
         <div className={styles.token_panel_container}>

@@ -21,6 +21,10 @@
   }
 }
 
+.fetch_selector_container h2 {
+  font-size: 20px;
+}
+
 .select_container {
   text-align: center;
   padding: 0.5rem 1rem;

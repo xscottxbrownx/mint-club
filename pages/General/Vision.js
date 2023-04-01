@@ -3,7 +3,8 @@ import GeneralLayout from "../../components/general/GeneralLayout";
 // Imported stylesheet
 import classes from "../../styles/general/Vision.module.css";
 
-const Vision = () => {
+
+export default function Vision() {
   return (
     <>
       <div className={classes.visionContainer}>
@@ -61,13 +62,7 @@ const Vision = () => {
   );
 };
 
-export default Vision;
-
 
 Vision.getLayout = function getLayout(page) {
-  return (
-    <GeneralLayout>
-      {page}
-    </GeneralLayout>
-  )
+  return <GeneralLayout>{page}</GeneralLayout>;
 }

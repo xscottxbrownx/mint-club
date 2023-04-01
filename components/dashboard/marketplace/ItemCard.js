@@ -9,6 +9,8 @@ const ItemCard = ({
   title,
   description,
 }) => {
+
+  
   return (
     <div className={classes.itemCardContainer}>
       <div className={classes.aboveImageContainer}>

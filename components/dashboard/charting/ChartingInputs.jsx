@@ -33,7 +33,11 @@ export default function ChartingInputs({
         </div>
         {/* select the fetchMethod */}
         <div className={styles.select_container}>
-          <select value={"stringWallet"} onChange={(e) => changeFetchMethods(e)} disabled>
+          <select
+            value={"stringWallet"}
+            onChange={e => changeFetchMethods(e)}
+            disabled
+          >
             <option value={"stringWallet"}>wallet address</option>
             <option value={"connectedWallet"}>connected wallet</option>
           </select>
@@ -52,7 +56,7 @@ export default function ChartingInputs({
             {/* select the blockchain */}
             <div className={styles.select_container_alt}>
               <select
-                onChange={(e) => {setChain(e.target.value)}}
+                onChange={e => {setChain(e.target.value)}}
                 defaultValue={process.env.ALCHEMY_NETWORK}
                 disabled
               >

@@ -8,8 +8,8 @@ export default function WalletConnect() {
       <ConnectButton accountStatus={{
           smallScreen: "avatar",
           largeScreen: "full",
-        }}>
-      </ConnectButton>
+        }}
+      />
     </div>
   );
 }

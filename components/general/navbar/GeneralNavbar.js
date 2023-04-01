@@ -15,7 +15,7 @@ import classes from "./GeneralNavbar.module.css";
 export default function GeneralNavbar() {
   
   const [active, setActive] = useState(false);
-  const links = ["About", "Team", "Vision"];
+  const generalLinks = ["About", "Team", "Vision"];
 
 
   const handleClick = () => {
@@ -44,7 +44,7 @@ export default function GeneralNavbar() {
 
       <div className={classes.navlist}>
         <ul>
-          {links.map((link, index) => (
+          {generalLinks.map((link, index) => (
             <li key={index}>
               <Link
                 href={`/General/${link}`}

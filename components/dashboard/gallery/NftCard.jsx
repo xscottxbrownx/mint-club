@@ -1,7 +1,10 @@
+// Imported Stylesheet
 import styles from "./NftCard.module.css";
 
 
+
 export default function NftCard({ nft }) {
+  
   return (
     <div className={styles.card_container}>
       <div className={styles.image_container}>

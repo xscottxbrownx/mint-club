@@ -108,14 +108,12 @@ export default function NFTGallery({}) {
       <div>
         {/* ===== START OF RENDER TOP INPUTS ===== */}
         <div className={styles.fetch_selector_container}>
-          <h2 style={{ fontSize: "20px" }}>Explore NFTs by:</h2>
+          <h2>Explore NFTs by:</h2>
           {/* select the fetchMethod */}
           <div className={styles.select_container}>
             <select
               defaultValue={isConnected ? "connectedWallet" : "wallet"}
-              onChange={(e) => {
-                changeFetchMethod(e);
-              }}
+              onChange={(e) => {changeFetchMethod(e)}}
             >
               <option value={"wallet"}>address</option>
               <option value={"collection"}>collection</option>
@@ -137,9 +135,7 @@ export default function NFTGallery({}) {
               {/* select the blockchain */}
               <div className={styles.select_container_alt}>
                 <select
-                  onChange={(e) => {
-                    setChain(e.target.value);
-                  }}
+                  onChange={(e) => {setChain(e.target.value)}}
                   defaultValue={process.env.ALCHEMY_NETWORK}
                 >
                   <option value={"ETH_MAINNET"}>Mainnet</option>
@@ -165,7 +161,7 @@ export default function NFTGallery({}) {
         <div className={styles.loading_box}>
           <p>Loading...</p>
         </div>
-      // if done loading, show a spam toggle and diaply nfts as a grid gallery  
+      // if done loading, show a spam toggle and display nfts as a grid gallery  
       ) : (
         <div className={styles.nft_gallery}>
           {/* RENDER a "HIDE SPAM" TOGGLE if not an nft collection address */}
@@ -210,9 +206,7 @@ export default function NFTGallery({}) {
         <div>
           <a
             className={styles.button_blue}
-            onClick={() => {
-              fetchNFTs(pageKey);
-            }}
+            onClick={() => {fetchNFTs(pageKey)}}
           >
             Load more
           </a>

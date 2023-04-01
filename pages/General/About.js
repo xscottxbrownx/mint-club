@@ -10,7 +10,7 @@ import aboutImageSrc from "../../public/FMC_about.png";
 import classes from "../../styles/general/About.module.css";
 
 
-const About = () => {
+export default function About() {
   return (
     <>
       <div className={classes.aboutContainer}>
@@ -55,13 +55,7 @@ const About = () => {
   );
 };
 
-export default About;
-
 
 About.getLayout = function getLayout(page) {
-  return (
-    <GeneralLayout>
-      {page}
-    </GeneralLayout>
-  )
+  return <GeneralLayout>{page}</GeneralLayout>;
 }
