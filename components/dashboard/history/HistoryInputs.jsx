@@ -87,7 +87,7 @@ export default function HistoryInputs({
   return (
     <div>
       <div className={styles.fetch_selector_container}>
-        <h2>Explore history by</h2>
+        <h2>Explore history by:</h2>
         {/* select the fetchMethod */}
         <div className={styles.select_container}>
           <select value={fetchMethod} onChange={(e) => changeFetchMethods(e)}>

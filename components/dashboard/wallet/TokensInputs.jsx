@@ -105,9 +105,11 @@ export default function TokensInputs({
   // MAIN RETURN/RENDER OF COMPONENT
   // ====================================================================
   return (
-    <div>
+    <>
       <div className={styles.fetch_selector_container}>
-        <h2>Explore tokens by</h2>
+        <div>
+          <h2>Explore tokens by:</h2>
+        </div>
         {/* select the fetchMethod */}
         <div className={styles.select_container}>
           <select value={fetchMethod} onChange={(e) => changeFetchMethods(e)}>
@@ -147,6 +149,6 @@ export default function TokensInputs({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

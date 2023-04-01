@@ -108,7 +108,7 @@ export default function NFTGallery({}) {
       <div>
         {/* ===== START OF RENDER TOP INPUTS ===== */}
         <div className={styles.fetch_selector_container}>
-          <h2 style={{ fontSize: "20px" }}>Explore NFTs by</h2>
+          <h2 style={{ fontSize: "20px" }}>Explore NFTs by:</h2>
           {/* select the fetchMethod */}
           <div className={styles.select_container}>
             <select
