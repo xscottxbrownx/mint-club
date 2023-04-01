@@ -18,13 +18,31 @@
   color: rgb(12, 12, 12);
 }
 
+@media screen and (max-width: 1200px) {
+  .history_panel_container{
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .history_panel_container{
+    padding-top: 3rem;
+  }
+}
+
 .history_box{
   background-color: #fff;
   border-radius: 12px;
   padding: 1.5rem 1rem;
-  min-width: 378px;
+  min-width: 200px;
   min-height: 260px;
   border: 1px solid #CFD9F0;
+}
+
+@media screen and (max-width: 400px) {
+  .history_box{
+    padding: 1.5rem .25rem;
+  }
 }
 
 .history_box h2{
@@ -49,6 +67,18 @@
 
 .table th{
   color: #008fff;
+}
+
+@media screen and (max-width: 600px) {
+  .etherscanHeader, .dateHeader, .usdHeader{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 358px) {
+  .ethHeader, .actionHeader{
+    display: none;
+  }
 }
 
 .transaction{

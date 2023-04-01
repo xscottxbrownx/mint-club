@@ -1,12 +1,14 @@
 // Imported from Next
 import Script from 'next/script';
+// Imported Stylesheet
+import styles from './ChartingDisplay.module.css';
 
 
 
 export default function ChartingDisplay({ addressSearch }) {
 
   return (
-    <>
+    <div className={styles.floor_price_container}>
       {/* floor price chart widget */}
       <Script
         type="module"
@@ -19,8 +21,8 @@ export default function ChartingDisplay({ addressSearch }) {
         showOutliers="true"
         defaultTimeSpan="7d"
         timeSpan='["24h","7d","30d"]'
-        language="en"
-      ></price-graph>
-    </>
+        language="en">
+      </price-graph>
+    </div>
   );
 }

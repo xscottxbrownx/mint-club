@@ -17,7 +17,7 @@ const TeamCard = ({
       </div>
       <div className={classes.infoContainer}>
         <div className={classes.imageContainer}>
-          <Image src={imageSrc} alt={imageAlt} fill/>
+          <Image src={imageSrc} alt={imageAlt} fill />
         </div>
         <h4>
           Discord: <span>{discordUsername}</span>

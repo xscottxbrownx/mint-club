@@ -2,6 +2,7 @@
   border: 1px solid black;
   border-radius: 10px;
   margin: 3px 0px;
+  padding-bottom: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,6 +31,13 @@
   position: relative;
   height: 250px;
   width: 250px;
+}
+
+@media screen and (max-width: 352px) {
+  .imageContainer{
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .infoContainer h4 {

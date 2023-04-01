@@ -7,6 +7,6 @@
   justify-content: center;
 }
 
-.dashboardIntro h1 {
+.dashboardIntro h1, .dashboardIntro h2 {
   text-align: center;
 }

@@ -14,6 +14,13 @@
   margin-bottom: 1.5rem;
 }
 
+@media screen and (max-width: 475px) {
+  .fetch_selector_container{
+    flex-direction: column;
+    gap: 0rem;
+  }
+}
+
 .select_container {
   text-align: center;
   padding: 0.5rem 1rem;
@@ -64,14 +71,14 @@
   display: flex;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 850px) {
   .input_button_container{
     flex-direction: column;
     align-items: center;
     justify-self: center;
   }
   .input_button_container input{
-    width: 70%;
+    width: 100%;
   }
   .buttons_under_input{
     display: flex;
@@ -140,19 +147,19 @@
   color: #333639;
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 700px) {
   .nfts_display{
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-@media screen and (min-width: 561px) and (max-width: 750px) {
+@media screen and (min-width: 701px) and (max-width: 1000px) {
   .nfts_display{
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (min-width: 751px) and (max-width: 992px) {
+@media screen and (min-width: 1001px) and (max-width: 1300px) {
   .nfts_display{
     grid-template-columns: repeat(3, 1fr);
   }

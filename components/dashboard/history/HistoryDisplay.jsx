@@ -57,7 +57,7 @@ export default function HistoryDisplay({
         <div className={styles.loading_box}>
           <p>Loading...</p>
         </div>
-          ) 
+        ) 
         : (
         // if not loading, RENDER...
         <div className={styles.history_panel_container}>
@@ -70,13 +70,13 @@ export default function HistoryDisplay({
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <th>Action</th>
+                    <th className={styles.actionHeader}>Action</th>
                     <th>Name</th>
                     <th>Token ID</th>
-                    <th>{`Value (ETH)`}</th>
-                    <th>{`Value (USD)`}</th>
-                    <th>Etherscan</th>
-                    <th>Date</th>
+                    <th className={styles.ethHeader}>{`Value (ETH)`}</th>
+                    <th className={styles.usdHeader}>{`Value (USD)`}</th>
+                    <th className={styles.etherscanHeader}>Etherscan</th>
+                    <th className={styles.dateHeader}>Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,12 +84,12 @@ export default function HistoryDisplay({
                     const { action, nft, price, time, tx_hash } = transaction;
                     return (
                       <tr key={index} className={styles.transaction}>
-                        <td>{action}</td>
+                        <td className={styles.actionHeader}>{action}</td>
                         <td>{nft.collection_name ? nft.collection_name : `unknown`}</td>
                         <td>{nft.token_id}</td>
-                        <td>{price?.quantity ? price.quantity : "---"}</td>
-                        <td>{price?.usd ? `$${price.usd.toFixed(2)}` : "---"}</td>
-                        <td>
+                        <td className={styles.ethHeader}>{price?.quantity ? price.quantity : "---"}</td>
+                        <td className={styles.usdHeader}>{price?.usd ? `$${price.usd.toFixed(2)}` : "---"}</td>
+                        <td className={styles.etherscanHeader}>
                           <a
                             href={`https://etherscan.io/tx/${tx_hash}`}
                             target="_blank"
@@ -98,7 +98,7 @@ export default function HistoryDisplay({
                             <img src={"https://etherscan.io/images/brandassets/etherscan-logo-circle.svg"}/>
                           </a>
                         </td>
-                        <td>
+                        <td className={styles.dateHeader}>
                           {new Intl.DateTimeFormat("en-US", {
                             year: "2-digit",
                             month: "numeric",

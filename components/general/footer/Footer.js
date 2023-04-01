@@ -34,8 +34,10 @@ const Footer = () => {
           <FontAwesomeIcon icon={faShip} />
         </a>
       </div>
-      <div className={classes.copyright}>
-        Copyright &copy; 2021.{" "}
+      <div className={classes.copyrightBlock}>
+        <span className={classes.copyright}>
+          Copyright
+        </span> &copy; 2023.{" "}
         <span className={classes.FMCtext}>
           <b>Free Mint Club</b>
         </span>

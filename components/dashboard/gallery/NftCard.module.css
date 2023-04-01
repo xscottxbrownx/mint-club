@@ -8,6 +8,12 @@
   border: 1px solid #cfd9f0;
 }
 
+@media screen and (max-width: 400px) {
+  .card_container{
+    max-width: 218px;
+  }
+}
+
 .image_container {
   height: 300px;
   width: 100%;

@@ -18,13 +18,31 @@
   color: rgb(12, 12, 12);
 }
 
+@media screen and (max-width: 1200px) {
+  .token_panel_container{
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .token_panel_container{
+    padding-top: 3rem;
+  }
+}
+
 .token_box{
   background-color: #fff;
   border-radius: 12px;
   padding: 1.5rem 1rem;
-  min-width: 378px;
+  min-width: 200px;
   min-height: 260px;
   border: 1px solid #CFD9F0;
+}
+
+@media screen and (max-width: 400px) {
+  .token_box{
+    padding: 1.5rem .25rem;
+  }
 }
 
 .token_box h2{
@@ -48,6 +66,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (max-width: 400px) {
+  .token{
+    flex-direction: column;
+  }
 }
 
 .token_name_container{
