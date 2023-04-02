@@ -15,52 +15,81 @@ import classes from "./GeneralNavbar.module.css";
 
 export default function GeneralNavbar() {
   
+
   const [active, setActive] = useState(false);
   const router = useRouter();
-  const currentRoute = router.pathname;
-  const generalLinks = ["About", "Team", "Vision"];
+  const generalLinksData = ["About", "Team", "Vision"];
 
 
+  // click of link or hamburger menu icon in these conditions will flip active state 
   const handleClick = () => {
-    const navmenu = document.getElementsByClassName(classes.navlist)[0];
-    if ( window.innerWidth <= 600 || (window.innerWidth > 600 && navmenu.classList.contains(classes.active)) ) {
-      navmenu.classList.toggle(classes.active);
+    if ( window.innerWidth <= 600 || (window.innerWidth > 600 && active) ) {
       setActive((active) => !active);
     }
     return
   };
 
 
+  // determine which menu icon (hamburger or X) based on active state
   const menuIcon = 
     active 
       ? <FontAwesomeIcon className={`${classes.closeIcon} fa-2x`} icon={faTimes} />
       : <FontAwesomeIcon className={`${classes.hamburgerIcon} fa-2x`} icon={faBars} />
 
 
+  // determine which nav menu styling based on active state
+  const allLinks =
+    active
+      ? classes.navlistShow
+      : classes.navlist
 
+
+  // create general links in navbar using generalLinksData array
+  const generalLinks = generalLinksData.map((link, index) => {
+    
+    const routeCheck = router.pathname === `/General/${link}`
+
+    const liClass = 
+      routeCheck
+        ? classes.navlinkShowLiActive
+        : null
+
+    const linkClass =
+      routeCheck
+        ? classes.navlinkActive
+        : classes.navlink
+
+    return (
+      <li key={index} className={liClass}>
+        <Link
+          href={`/General/${link}`}
+          className={linkClass}
+          onClick={() => {handleClick()}}
+        >
+          {link}
+        </Link>
+      </li>
+    )
+  });
+
+
+
+  // MAIN RETURN/RENDER OF COMPONENT
+  // ====================================================================  
   return (
     <nav className={classes.navbar}>
+      {/* FMC logo/home link */}
       <Link href="/" className={classes.navlogo}>
         <Image priority src={FMC_logo} alt="FMC logo" />
       </Link>
-
+      {/* Mobile hamburger menu */}
       <button onClick={() => {handleClick()}}>
         {menuIcon}
       </button>
-
-      <div className={classes.navlist}>
+      {/* Nav links */}
+      <div className={allLinks}>
         <ul>
-          {generalLinks.map((link, index) => (
-            <li key={index}>
-              <Link
-                href={`/General/${link}`}
-                className={currentRoute === `/General/${link}` ? classes.navlinkActive : classes.navlink}
-                onClick={() => {handleClick()}}
-              >
-                {link}
-              </Link>
-            </li>
-          ))}
+          {generalLinks}
           <li>
             <Link href="/Dashboard/Intro" className={classes.navlink}>
               Member Dashboard

@@ -19,19 +19,39 @@ export default function Sidebar() {
 
   const [expandSidebar, setExpandSidebar] = useState(false);
 
+
+  // click of arrow icon or link while sidebar is expanded will flip expandSidebar state
   const handleClick = () => {
-    const expandmenu = document.getElementsByClassName(classes.sidebar)[0];
-    expandmenu.classList.toggle(classes.expanded);
     setExpandSidebar((expandSidebar) => !expandSidebar);
   };
 
+
+  // determine which sidebar styling based on expandSidebar state
+  const isExpanded =
+    expandSidebar
+      ? classes.sidebarExpanded
+      : classes.sidebar
+
+
+  // determine which styling for arrow icon container based on expandSidebar state
+  const chevronContainer =
+    expandSidebar
+      ? classes.sidebarChevronLeft
+      : classes.sidebarChevronRight
+  
+  
+      // determine which arrow icon direction to show based on expandSidebar state
   const sidebarChevronIcon = 
     expandSidebar 
       ? faChevronLeft
       : faChevronRight
 
+
+  // create sidebar links using SidebarLinksData array
   const sidebarLinks = SidebarLinksData.map((sidebarlink, index) => {
+
     const { link, text, icon } = sidebarlink;
+
     return (
       <li key={index} onClick={() => {
         if (expandSidebar) {
@@ -53,7 +73,7 @@ export default function Sidebar() {
   // MAIN RETURN/RENDER OF COMPONENT
   // ====================================================================
   return (
-    <nav className={classes.sidebar}>
+    <nav className={isExpanded}>
       <div className={classes.sidebarIconsContainer}>
         <div className={classes.sidebarLogoChevronContainer}>
           {/* FMC logo link back to homepage */}
@@ -68,11 +88,7 @@ export default function Sidebar() {
           <span></span>
           {/* arrow icon to open/close sidebar */}
           <div
-            className={
-              expandSidebar
-                ? classes.sidebarChevronLeft
-                : classes.sidebarChevronRight
-            }
+            className={chevronContainer}
             onClick={() => {handleClick()}}
           >
             <FontAwesomeIcon
