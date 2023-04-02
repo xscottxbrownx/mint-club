@@ -12,3 +12,35 @@
   font-size: 5rem;
   color: #1e1f21;
 }
+
+.placeholder p {
+  padding: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .placeholder {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 705px) {
+  .placeholder {
+    font-size: 3rem;
+  }
+
+  .placeholder p {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .placeholder {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .placeholder {
+    font-size: 1.5rem;
+  }
+}

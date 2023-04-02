@@ -6,7 +6,10 @@ import classes from "../../styles/dashboard/Notifications.module.css";
 export default function Notifications() {
   return (
     <div className={classes.notificationsContainer}>
-      <div className={classes.placeholder}>NOTIFICATIONS COMPONENT</div>
+      <div className={classes.placeholder}>
+        <p>NOTIFICATIONS</p>
+        <p>COMPONENT</p>
+      </div>
     </div>
   );
 };
