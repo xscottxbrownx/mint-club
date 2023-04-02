@@ -90,7 +90,7 @@
     border-top: black solid 2px;
   }
 
-  .navlist ul li:hover {
+  .navlist li:hover {
     background-color: rgb(68, 201, 143);
   }
 

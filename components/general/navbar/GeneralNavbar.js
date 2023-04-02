@@ -23,8 +23,11 @@ export default function GeneralNavbar() {
 
   const handleClick = () => {
     const navmenu = document.getElementsByClassName(classes.navlist)[0];
-    navmenu.classList.toggle(classes.active);
-    setActive((active) => !active);
+    if ( window.innerWidth <= 600 || (window.innerWidth > 600 && navmenu.classList.contains(classes.active)) ) {
+      navmenu.classList.toggle(classes.active);
+      setActive((active) => !active);
+    }
+    return
   };
 
 
