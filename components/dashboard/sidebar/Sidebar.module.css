@@ -22,9 +22,33 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  width: 11%;
+  width: 15%;
   text-align: right;
   background-color: #1e1f21;
+}
+
+@media screen and (max-width: 1000px) {
+  .sidebar.expanded {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .sidebar.expanded {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .sidebar.expanded {
+    width: 42%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .sidebar.expanded {
+    width: 55%;
+  }
 }
 
 .sidebarLogoChevronContainer {
@@ -38,14 +62,14 @@
   display: flex;
 }
 
-.sidebarChevronRight {
-  display: flex;
-  justify-content: center;
-}
-
 .sidebarChevronLeft {
   display: flex;
   justify-content: flex-end;
+}
+
+.sidebarChevronRight {
+  display: flex;
+  justify-content: center;
 }
 
 .sidebar span {
