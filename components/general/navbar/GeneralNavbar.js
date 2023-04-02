@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+// Imported Components
+import GeneralLinksData from "../../../data/GeneralLinks";
 // Imported assets
 import FMC_logo from "../../../public/navbar_logo_dropshadow.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,10 +17,8 @@ import classes from "./GeneralNavbar.module.css";
 
 export default function GeneralNavbar() {
   
-
   const [active, setActive] = useState(false);
   const router = useRouter();
-  const generalLinksData = ["About", "Team", "Vision"];
 
 
   // click of link or hamburger menu icon in these conditions will flip active state 
@@ -45,7 +45,7 @@ export default function GeneralNavbar() {
 
 
   // create general links in navbar using generalLinksData array
-  const generalLinks = generalLinksData.map((link, index) => {
+  const generalLinks = GeneralLinksData.map((link, index) => {
     
     const routeCheck = router.pathname === `/General/${link}`
 
