@@ -3,6 +3,7 @@ import { useState } from "react";
 // Imports from Next
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 // Imported assets
 import FMC_logo from "../../../public/navbar_logo_dropshadow.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +16,8 @@ import classes from "./GeneralNavbar.module.css";
 export default function GeneralNavbar() {
   
   const [active, setActive] = useState(false);
+  const router = useRouter();
+  const currentRoute = router.pathname;
   const generalLinks = ["About", "Team", "Vision"];
 
 
@@ -48,7 +51,7 @@ export default function GeneralNavbar() {
             <li key={index}>
               <Link
                 href={`/General/${link}`}
-                className={classes.navlink}
+                className={currentRoute === `/General/${link}` ? classes.navlinkActive : classes.navlink}
                 onClick={() => {handleClick()}}
               >
                 {link}

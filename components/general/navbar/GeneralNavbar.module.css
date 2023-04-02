@@ -37,6 +37,13 @@
   text-decoration: underline;
 }
 
+.navlinkActive {
+  font-size: 18px;
+  font-weight: 650;
+  color: #ffde59;
+  text-decoration: underline;
+  padding-right: 15px;
+}
 
 /* ----- START OF MOBILE HAMBURGER MENU (within navbar) ----- */
 .hamburgerIcon,
