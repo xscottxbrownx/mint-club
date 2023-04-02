@@ -13,11 +13,12 @@ import classes from "./DashNavLink.module.css";
 export const DashNavLink = ({ expandSidebar, link, icon, text }) => {
 
   const router = useRouter();
-  console.log("router.pathname", router.pathname);
-  console.log("router.asPath", router.asPath);
 
-  let curPath =
-    router.pathname.includes(link) && classes.sidebarLinkActive
+  // if current url matches the link, style the link
+  const curPath =
+    router.pathname === link
+      ? classes.sidebarLinkActive
+      : null
 
 
   return (
@@ -25,11 +26,13 @@ export const DashNavLink = ({ expandSidebar, link, icon, text }) => {
       href={link}
       className={`${curPath} ${classes.sidebarLink} ${classes.flex} fa-2x`}
     >
+      {/* if sidebar is expanded, show text along with icon */}
       {expandSidebar && <p>{text}</p>}
       <FontAwesomeIcon icon={icon} />
     </Link>
   );
 };
+
 
 // Define the prop types of what this component needs
 DashNavLink.prototype = {
