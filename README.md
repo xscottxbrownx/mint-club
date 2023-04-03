@@ -1,12 +1,12 @@
 # FMC Website Mockup
 
-***
-
 [view here](http://fmc.scottxbrown.com)
 
 A sample website to give visitors the basic information on the company, as well as a member dashboard area (that would be token-gated by owning the FMC NFT).
 
 Built with: `NextJS`, Alchemy API's, NFTGO API's, `Javascript`, and `CSS`.
+
+***
 
 # Project Status
 
