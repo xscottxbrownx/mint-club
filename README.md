@@ -1,10 +1,8 @@
-# Project Name & Pitch
+# FMC Website Mockup
 
 ###
 
-### FMC Website Mockup
-[visit here](http://fmc.scottxbrown.com)
-
+[view here](http://fmc.scottxbrown.com)
 
 A sample website to give visitors the basic information on the company, as well as a member dashboard area (that would be token-gated by owning the FMC NFT).
 
