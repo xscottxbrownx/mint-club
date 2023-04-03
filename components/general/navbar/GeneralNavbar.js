@@ -83,9 +83,9 @@ export default function GeneralNavbar() {
         <Image priority src={FMC_logo} alt="FMC logo" />
       </Link>
       {/* Mobile hamburger menu */}
-      <button onClick={() => {handleClick()}}>
+      <div onClick={() => {handleClick()}}>
         {menuIcon}
-      </button>
+      </div>
       {/* Nav links */}
       <div className={allLinks}>
         <ul>
