@@ -19,40 +19,44 @@ Built with: `NextJS`, Alchemy API's, NFTGO API's, `Javascript`, and `CSS`.
 # Project Screen Shots
 
 Landing page:
-![alt text](link)
+![landing page](./public/readme_photos/Landing.webp)
 
 Landing page (MOBILE VIEW):
-![alt text](link)
+![landing page mobile view](./public/readme_photos/Landing_mobile.webp)
 
 Landing page with menu open (MOBILE VIEW):
-![alt text](link)
+![landing page mobile view with menu](./public/readme_photos/Landing_mobile_menu.webp)
 
 Team page (using CSS grid):
-![alt text](link)
+![team page](./public/readme_photos/Team.webp)
 
 Team page (MOBILE VIEW):
-![alt text](link)
+![team page mobile view](./public/readme_photos/Team_mobile.webp)
+
+Team page with menu open (MOBILE VIEW):
+![team page mobile view with menu](./public/readme_photos/Team_mobile_menu.webp)
 
 Member dashboard intro page:
-![alt text](link)
+![dashboard intro page](./public/readme_photos/Dashboard.webp)
 
 NFT Gallery page:
-![alt text](link)
+![nft gallery page](./public/readme_photos/Gallery.webp)
 
 Wallet page with user's wallet connected:
-![alt text](link)
+![wallet page](./public/readme_photos/Wallet.webp)
 
 Transaction history page with user's wallet connected:
-![alt text](link)
+![history page](./public/readme_photos/History.webp)
 
 Transaction history page (MOBILE VIEW):
-![alt text](link)
+![history page mobile view](./public/readme_photos/History_mobile.webp)
 
 Charting page:
-![alt text](link)
+![charting page 1](./public/readme_photos/Charting1.webp)
+![charting page 2](./public/readme_photos/Charting2.webp)
 
 Marketplace page (mockup in progress):
-![alt text](link)
+![marketplace page](./public/readme_photos/Marketplace_wip.webp)
 
 ***
 
