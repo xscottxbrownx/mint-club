@@ -8,6 +8,7 @@
   width: 100%;
   color: white;
   background-color: #333639;
+  overflow-x: hidden;
 }
 
 .charting_page {

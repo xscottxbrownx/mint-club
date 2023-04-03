@@ -2,6 +2,7 @@
   display: flex;
   width: calc(100vw - 60px);
   height: calc(100vh - 60px);
+  overflow-x: hidden;
 }
 
 .placeholder {
@@ -9,6 +10,7 @@
   align-items: center;
   justify-content: center;
   width: 100vw;
+  overflow-x: hidden;
   font-size: 5rem;
   color: #1e1f21;
 }

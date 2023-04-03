@@ -1,6 +1,8 @@
 .generalIntro {
   width: 100vw;
   height: calc(100vh - 123px);
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .generalIntroImage {

@@ -3,6 +3,7 @@
   flex-direction: column;
   width: calc(100vw - 60px);
   height: calc(100vh - 60px);
+  overflow-x: hidden;
   align-items: center;
   justify-content: center;
 }
