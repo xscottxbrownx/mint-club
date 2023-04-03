@@ -70,15 +70,17 @@ Originally, I wanted to build a component in the dashboard section of site that 
 
 One of the main challenges I ran into was getting the necessary API keys for data I wanted. This led me to spending a few days researching what solutions and other APIs existed. Due to project time constraints, I had to table the NFT marketplace and focus more on what I had access to now.
 
-I found the web3 company Alchemy, and their SDK. I was able to get an API key for them and another company and start building again. For what I had newly intended (user's wallet information - NFTs, crypto, transactions, etc), Alchemy required `NextJS` instead of React. I had never used NextJS before this, but was determined to learn and accomplish what I could. I quickly followed both Alchemy and Next documentation to get my project migrated over and have the NFT Gallery component working. This product was new for Alchemy and I found many enhancements that it needed - so I also submitted issues and pull requests to their open source code while coding this project. Many have been implemented/merged, so now I am a contributor of the `create-web3-dapp nft explorer` template. You can view open/closed issues and pr's [here](https://github.com/alchemyplatform/cw3d-nft-explorer).
+I found the web3 company Alchemy, and their SDK. I was able to get an API key for them and another company and start building again. For what I had newly intended (user's wallet information - NFTs, crypto, transactions, etc), Alchemy required `NextJS` instead of React. I had never used NextJS before this, but was determined to learn and accomplish what I could. I quickly followed both Alchemy and Next documentation to get my project migrated over and have the NFT Gallery component working. This product was new for Alchemy and I found many enhancements that it needed - so I also submitted issues and pull requests to their open source code while coding this project. Many have been implemented/merged, so now I am a contributor of the `create-web3-dapp nft explorer` template.
 
-> At the end of the 3 week period this mockup has all information needed about the company and a dashboard area that includes: 
-> - connection to the user's web 3 wallet or typed in wallet address
-> - gallery of nfts
-> - token balances
-> - last 30 day history of transactions
-> - floor price and holder informational charts by collection
-> - and some more work-in-progress components.
+I chose to use the `create-web3-dapp` boilerplate provided by Alchemy to minimize initial project setup/NFT gallery component, invest more time diving into other features, and polishing the look of this site mockup. I plan on continuing this development as I have time by adding a few more components, optimizing code even more, and gaining more experience with NextJS.
+
+At the end of the 3 week period, this mockup has all information needed about the company and a dashboard area that includes: 
+- connection to the user's web 3 wallet or typed in wallet address
+- gallery of nfts
+- token balances
+- last 30 day history of transactions
+- floor price and holder informational charts by collection
+- and some more work-in-progress components.
 
 The technologies implemented in this project are:
 - NextJS
@@ -88,5 +90,7 @@ The technologies implemented in this project are:
 - and a significant amount of: 
     - VanillaJS
     - JSX
-    - and CSS 
-I chose to use the `create-web3-dapp` boilerplate provided by Alchemy to minimize initial project setup/NFT gallery component, invest more time diving into other features, and polishing the look of this site mockup. I plan on continuing this development as I have time by adding a few more components, optimizing code even more, and gaining more experience with NextJS.
+    - and CSS
+
+And I was able to contribute to this company's open source code to better their product offered:
+- You can view open/closed issues and PR's [here](https://github.com/alchemyplatform/cw3d-nft-explorer).
