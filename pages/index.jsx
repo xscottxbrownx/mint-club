@@ -1,5 +1,3 @@
-// Imports from React
-import { useState, useEffect } from "react";
 // Imports from Next
 import Image from "next/image.js";
 // Imported Components
