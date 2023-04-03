@@ -1,6 +1,6 @@
 # FMC Website Mockup
 
-###
+***
 
 [view here](http://fmc.scottxbrown.com)
 
@@ -21,40 +21,40 @@ Built with: `NextJS`, Alchemy API's, NFTGO API's, `Javascript`, and `CSS`.
 ###
 
 Landing page:
-[ SCREEN SHOT ]
+![alt text](link)
 
 Landing page (MOBILE VIEW):
-[ SCREEN SHOT ]
+![alt text](link)
 
 Landing page with menu open (MOBILE VIEW):
-[ SCREEN SHOT ]
+![alt text](link)
 
 Team page (using CSS grid):
-[ SCREEN SHOT ]
+![alt text](link)
 
 Team page (MOBILE VIEW):
-[ SCREEN SHOT ]
+![alt text](link)
 
 Member dashboard intro page:
-[ SCREEN SHOT ]
+![alt text](link)
 
 NFT Gallery page:
-[ SCREEN SHOT ]
+![alt text](link)
 
 Wallet page with user's wallet connected:
-[ SCREEN SHOT ]
+![alt text](link)
 
 Transaction history page with user's wallet connected:
-[ SCREEN SHOT ]
+![alt text](link)
 
 Transaction history page (MOBILE VIEW):
-[ SCREEN SHOT ]
+![alt text](link)
 
 Charting page:
-[ SCREEN SHOT ]
+![alt text](link)
 
 Marketplace page (mockup in progress):
-[ SCREEN SHOT ]
+![alt text](link)
 
 # Reflection
 
