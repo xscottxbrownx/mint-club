@@ -10,15 +10,13 @@ Built with: `NextJS`, Alchemy API's, NFTGO API's, `Javascript`, and `CSS`.
 
 # Project Status
 
-###
-
 **This project is polished enough to host on my portfolio, but certain components/features are currently in development.** All informational pages/sections are complete, first four dashboard components are complete as well as web3 wallet connection, but last 2 component ideas are still being developed. This project isn't used or going to be sold to anybody, so the priority isn't there except for learning experience for myself.
 
 **Users can connect their NFT/crypto wallet (or key in a wallet address) and see visual gallery of NFTs held, cryptocurrency balances held, last 30 day transaction history, and check floor price/holding period/holding amount of BAYC NFT colletion (can be configured to any collection.)**
 
-# Project Screen Shots
+***
 
-###
+# Project Screen Shots
 
 Landing page:
 ![alt text](link)
@@ -56,9 +54,9 @@ Charting page:
 Marketplace page (mockup in progress):
 ![alt text](link)
 
-# Reflection
+***
 
-###
+# Reflection
 
 **This project is a mockup site for a company that I co-founded in late September 2021.** This company started as a discord server for NFT traders and friends. It quickly grew to over 15k members and 60k twitter followers all organically (no bots.) The server was focused on NFT education and alpha, and as such we also launched our own NFT to token-gate the valuable information in April 2022. 
 
