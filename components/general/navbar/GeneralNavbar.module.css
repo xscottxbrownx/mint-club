@@ -78,9 +78,11 @@
   }
 
   .navlistShow {
+    position: absolute;
+    top: 60px;
     display: flex;
     width: 100%;
-    background-color: rgb(147, 199, 176, 0.5);
+    background-color: rgb(109, 204, 162, 0.9);;
     border-bottom: black solid 2px;
   }
 
