@@ -85,7 +85,7 @@ export default function Sidebar() {
               priority
             />
           </Link>
-          <span></span>
+          <span />
           {/* arrow icon to open/close sidebar */}
           <div
             className={chevronContainer}
@@ -98,14 +98,14 @@ export default function Sidebar() {
               } fa-2x`}
             />
           </div>
-          <span></span>
+          <span />
         </div>
-        <span></span>
+        <span />
         {/* links to dashboard components */}
         <ul>
           {sidebarLinks}
         </ul>
-        <span></span>
+        <span />
       </div>
     </nav>
   );

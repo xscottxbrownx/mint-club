@@ -11,8 +11,8 @@ export default function DashboardLayout({ children }) {
     <div className={classes.dashboard}>
       <Sidebar />
       <WalletConnect />
-      <div className={classes.dashboardContent}>{
-        children}
+      <div className={classes.dashboardContent}>
+        {children}
       </div>
     </div>
   );

@@ -114,7 +114,8 @@ export default function HistoryDisplay({
             }
           </div>
         </div>
-      )}
+        )
+      }
     </>
   );
 }
