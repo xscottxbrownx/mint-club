@@ -72,6 +72,16 @@ export default function GeneralNavbar() {
     )
   });
 
+  
+  // add the dashboard link that is different from mapped links
+  generalLinks.push(
+    <li key={generalLinks.length}>
+      <Link href="/Dashboard/Intro" className={classes.navlink}>
+        Member Dashboard
+      </Link>
+    </li>
+  );
+
 
 
   // MAIN RETURN/RENDER OF COMPONENT
@@ -90,11 +100,6 @@ export default function GeneralNavbar() {
       <div className={allLinks}>
         <ul>
           {generalLinks}
-          <li>
-            <Link href="/Dashboard/Intro" className={classes.navlink}>
-              Member Dashboard
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
